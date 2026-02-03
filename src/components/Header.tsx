@@ -16,6 +16,7 @@ const Header = () => {
   }, [])
 
   const navItems: navItems[] = [
+    { name: "About", id: "about" },
     { name: "Projects", id: "projects" },
     { name: "Contact", id: "contact" },
   ]
@@ -48,11 +49,10 @@ const Header = () => {
         {navItems.map((item) => (
           <motion.li
             key={item.id}
-            className={`text-[14px] px-3 py-1 cursor-pointer rounded-md relative ${
-              activeTab === item.id
+            className={`text-[14px] px-3 py-1 cursor-pointer rounded-md relative ${activeTab === item.id
                 ? "text-white"
                 : "text-white/70 hover:text-white"
-            }`}
+              }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => handleClick(item.id)}

@@ -1,359 +1,265 @@
-import type { TimelineItem } from "@/types/ui"
-import {
-  Briefcase,
-  GraduationCap,
-  Code,
-  Rocket,
-  User,
-  Users,
-  TreePine,
-  Sparkles,
-  Zap,
-  Target,
-  Brain,
-} from "lucide-react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { useRef } from "react"
+import { GraduationCap, Code, Rocket, Users, Layers, Briefcase, Sparkles, ChevronRight, Award, Clock, Terminal, BookOpen, Zap } from "lucide-react"
 
-export function About() {
+interface JourneyMilestone {
+  id: number
+  title: string
+  description: string
+  icon: React.ReactNode
+  color: string
+  skills: string[]
+  year: string
+}
+
+export function JourneySection() {
   const containerRef = useRef<HTMLDivElement>(null)
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   })
 
-  const items: TimelineItem[] = [
+  const isInView = useInView(containerRef, { once: true, amount: 0.3 })
+
+  // Parallax effects
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.5])
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.02, 1])
+
+  const milestones: JourneyMilestone[] = [
     {
       id: 1,
-      title: "Introduction",
-      description:
-        "Full-stack developer with 3+ years of experience building web applications using React, Next.js, Vue.js, Laravel, Node.js and PostgreSQL. I have developed a strong foundation in front-end and back-end development, and I'm passionate about creating user-friendly and efficient applications that meet the needs of my clients.",
-      icon: <User className="w-5 h-5" />,
-      side: "left",
-      color: "text-blue-400",
+      title: "Academic Foundation",
+      description: "Software Engineering student at Debre Birhan University, building strong foundations in algorithms, data structures, and software design principles.",
+      icon: <GraduationCap className="w-6 h-6" />,
+      color: "from-blue-500 to-cyan-400",
+      skills: ["Algorithms", "Data Structures", "OOP", "Software Design"],
+      year: "2022 - Present"
     },
     {
       id: 2,
-      title: "Education",
-      description:
-        "Software engineering degree from Debre Brihan University (2022-2025). Graduated with honors. Certified in fundamental programming and Artificial Intelligence from Udemy, and MERN stack development from Alison.",
-      date: "2022 - 2025",
-      icon: <GraduationCap className="w-5 h-5" />,
-      side: "right",
-      color: "text-emerald-400",
+      title: "Technical Mastery",
+      description: "Mastered both front-end and back-end development, creating full-stack applications with modern technologies and best practices.",
+      icon: <Code className="w-6 h-6" />,
+      color: "from-purple-500 to-pink-400",
+      skills: ["React/Next.js", "Node.js", "TypeScript", "PostgreSQL"],
+      year: "2023 - Present"
     },
     {
       id: 3,
-      title: "Internship",
-      description:
-        "Internship at Efuye Gela as a full-stack developer and as a frontend developer at Melfan Tech. Worked on a range of projects including web applications using React, Next.js, Vue.js, Laravel, Node.js and PostgreSQL.",
-      date: "2018 - 2020",
-      icon: <Briefcase className="w-5 h-5" />,
-      side: "left",
-      color: "text-amber-400",
+      title: "Real-World Application",
+      description: "Hands-on experience through freelance projects, delivering end-to-end solutions from concept to deployment and maintenance.",
+      icon: <Briefcase className="w-6 h-6" />,
+      color: "from-emerald-500 to-green-400",
+      skills: ["Project Management", "Client Communication", "Deployment", "Maintenance"],
+      year: "2023 - Present"
     },
     {
       id: 4,
-      title: "Current Work",
-      description: "Developing a Node.js package for Ethiopian payment systems integrating Telebirr and Fayda APIs. Actively building personal projects and contributing to open-source while continuously learning new technologies.",
-      date: "2020 - Present",
-      icon: <Code className="w-5 h-5" />,
-      side: "right",
-      color: "text-cyan-400",
+      title: "Full-Stack Expertise",
+      description: "Developed responsive interfaces and scalable back-end systems, focusing on performance, security, and user experience.",
+      icon: <Layers className="w-6 h-6" />,
+      color: "from-orange-500 to-amber-400",
+      skills: ["API Design", "Database Design", "UI/UX", "Performance"],
+      year: "2024 - Present"
     },
     {
       id: 5,
-      title: "Future Goals",
-      description:
-        "Continuously learning and growing as a developer. Working on personal projects and contributing to open-source projects. Seeking new opportunities to expand my skills and knowledge.",
-      icon: <Rocket className="w-5 h-5" />,
-      side: "left",
-      color: "text-purple-400",
+      title: "Professional Growth",
+      description: "Enhanced soft skills including communication, time management, and problem-solving for effective collaboration.",
+      icon: <Users className="w-6 h-6" />,
+      color: "from-rose-500 to-red-400",
+      skills: ["Communication", "Teamwork", "Problem Solving", "Time Management"],
+      year: "Ongoing"
     },
     {
       id: 6,
-      title: "Development Philosophy",
-      description:
-        "I believe in clean, maintainable code and user-centric design. Performance and accessibility should never be afterthoughts.",
-      icon: <Target className="w-5 h-5" />,
-      side: "right",
-      color: "text-rose-400",
-    },
-    {
-      id: 7,
-      title: "Work Style",
-      description:
-        "Agile practitioner who thrives in collaborative environments. Strong believer in documentation and knowledge sharing.",
-      icon: <Users className="w-5 h-5" />,
-      side: "left",
-      color: "text-pink-400",
-    },
+      title: "Future Vision",
+      description: "Continuously learning and evolving to deliver cutting-edge solutions that help businesses transform ideas into reality.",
+      icon: <Rocket className="w-6 h-6" />,
+      color: "from-violet-500 to-purple-400",
+      skills: ["Innovation", "Continuous Learning", "Scalability", "Best Practices"],
+      year: "Next Steps"
+    }
+  ]
+
+  const stats = [
+    { label: "Projects Completed", value: "20+", icon: <Terminal className="w-5 h-5" /> },
+    { label: "Technologies Mastered", value: "15+", icon: <Terminal className="w-5 h-5" /> },
+    { label: "Client Satisfaction", value: "100%", icon: <Award className="w-5 h-5" /> },
+    { label: "Years Experience", value: "2+", icon: <Clock className="w-5 h-5" /> },
   ]
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden min-h-screen">
-      {/* Animated Background Elements */}
+    <section
+      id="about"
+      ref={containerRef}
+      className="relative min-h-screen py-20 md:py-32 overflow-hidden"
+    >
+      {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-        {/* Animated Gradient Orbs */}
+        {/* Floating Elements */}
         <motion.div
           className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
+          animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           style={{
-            background: "radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%)",
+            filter: "blur(60px)"
           }}
         />
         <motion.div
           className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 60, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
+          animate={{ x: [0, -80, 0], y: [0, 60, 0] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           style={{
-            background: "radial-gradient(circle, rgba(52, 211, 153, 0.1) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(52, 211, 153, 0.08) 0%, transparent 70%)",
+            filter: "blur(60px)"
           }}
         />
-        
-        {/* Floating Particles */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.3, 0.7, 0.3],
-            }}
-            transition={{
-              duration: 2 + Math.random() * 3,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-        
-        {/* Grid Pattern */}
-        <div 
-          className="absolute inset-0 opacity-5"
+        {/* Animated Grid */}
+        <motion.div
+          className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px),
-                            linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
+            backgroundImage: `linear-gradient(to right, rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(34, 211, 238, 0.03) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
+            opacity,
           }}
         />
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-slate-950 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-950 to-transparent" />
-
-      {/* Content */}
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+      {/* Content Container */}
+      <motion.div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ scale }}>
         {/* Header */}
-        <motion.div
-          className="text-center mb-16 md:mb-24"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+        <motion.div className="text-center mb-16 md:mb-24" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
+          <motion.div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm font-medium text-cyan-300">Professional Journey</span>
+            <span className="text-sm font-medium text-cyan-300">Evolution & Growth</span>
           </motion.div>
-          
-          <motion.h2
-            className="text-4xl md:text-6xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <motion.h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-cyan-100 to-emerald-100 bg-clip-text text-transparent" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
             My{" "}
             <span className="relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500">
-                Path
+              <span className="relative bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent">
+                Development
               </span>
-              <motion.div
-                className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-blue-500"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.5 }}
-              />
-            </span>
+            </span>{" "}
+            Journey
           </motion.h2>
-          
-          <motion.p
-            className="text-lg text-slate-300 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            A timeline of milestones, experiences, and principles that shape my journey as a developer
+          <motion.p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}>
+            From academic foundations to professional full-stack development, follow my path of continuous learning and growth
           </motion.p>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical Timeline Line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 transform -translate-x-1/2">
-            <motion.div
-              className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-cyan-500/0 via-cyan-500/50 to-emerald-500/0"
-              style={{
-                scaleY: scrollYProgress,
-              }}
-            />
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-cyan-500/20 via-emerald-500/20 to-blue-500/20 blur-sm" />
-          </div>
-
-          {/* Timeline Items */}
-          <div className="space-y-12 md:space-y-24">
-            {items.map((item, index) => {
-              const isLeft = item.side === "left"
-              
-              return (
-                <motion.div
-                  key={item.id}
-                  className={`relative flex ${
-                    isLeft ? "md:flex-row-reverse" : "md:flex-row"
-                  } items-center`}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, delay: index * 0.15 }}
-                >
-                  {/* Timeline Node */}
-                  <div className="hidden md:flex flex-1 justify-center relative">
-                    <motion.div
-                      className={`absolute top-1/2 ${
-                        isLeft ? "right-0" : "left-0"
-                      } w-1/2 h-0.5 bg-gradient-to-r ${
-                        isLeft 
-                          ? "from-transparent via-cyan-500/30 to-cyan-500/50" 
-                          : "from-cyan-500/50 via-cyan-500/30 to-transparent"
-                      }`}
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 0.3 }}
-                    />
-                    <motion.div
-                      className="relative z-10 w-5 h-5 rounded-full bg-slate-900 border-2 border-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.5)]"
-                      whileHover={{ scale: 1.5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    />
-                    <motion.div
-                      className="absolute inset-0 rounded-full bg-cyan-500/20 blur-md"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  </div>
-
-                  {/* Content Card */}
+        {/* Horizontal Flow Timeline with Flex Wrap */}
+        <div className="relative w-full mb-12">
+          {/* Timeline Container - Uses flex with wrap */}
+          <div className="relative flex flex-wrap justify-center gap-6">
+            {/* Milestone Cards */}
+            {milestones.map((milestone, index) => (
+              <motion.div
+                key={milestone.id}
+                className="relative"
+                style={{ 
+                  width: 'calc(100% - 12px)',
+                  maxWidth: '400px',
+                  flex: '1 1 300px' // This makes cards flexible
+                }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ 
+                  y: -10,
+                  transition: { type: "spring", stiffness: 300 }
+                }}
+              >
+                {/* Timeline Node */}
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
                   <motion.div
-                    className={`flex-1 ${
-                      isLeft ? "md:pr-12" : "md:pl-12"
-                    }`}
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 400 }}
+                    className="w-12 h-12 rounded-full border-2 border-white/20 bg-slate-900 flex items-center justify-center relative"
+                    whileHover={{ scale: 1.1 }}
+                    animate={isInView ? {
+                      borderColor: ["rgba(255,255,255,0.2)", "rgba(34,211,238,0.8)", "rgba(255,255,255,0.2)"],
+                      boxShadow: ["0 0 0 rgba(34,211,238,0)", "0 0 20px rgba(34,211,238,0.5)", "0 0 0 rgba(34,211,238,0)"]
+                    } : {}}
+                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                   >
-                    <div className="group relative">
-                      {/* Card Glow Effect */}
-                      <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyan-500/10 via-emerald-500/10 to-blue-500/10 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      
-                      {/* Main Card */}
-                      <div className="relative p-6 md:p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl shadow-2xl">
-                        {/* Header */}
-                        <div className="flex items-center gap-4 mb-4">
-                          <motion.div
-                            className={`p-3 rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 ${item.color} shadow-lg`}
-                            whileHover={{ rotate: 5, scale: 1.1 }}
-                            transition={{ type: "spring", stiffness: 400 }}
-                          >
-                            {item.icon}
-                          </motion.div>
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <h3 className="text-xl md:text-2xl font-bold text-white">
-                                {item.title}
-                              </h3>
-                              {item.date && (
-                                <span className="px-3 py-1 text-xs font-medium rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
-                                  {item.date}
-                                </span>
-                              )}
-                            </div>
-                            <motion.div
-                              className="h-0.5 w-0 bg-gradient-to-r from-cyan-500 to-emerald-500"
-                              initial={{ width: 0 }}
-                              whileInView={{ width: "100%" }}
-                              viewport={{ once: true }}
-                              transition={{ duration: 1, delay: 0.5 }}
-                            />
-                          </div>
-                        </div>
-
-                        {/* Description */}
-                        <p className="text-slate-300 leading-relaxed">
-                          {item.description}
-                        </p>
-
-                        {/* Bottom Decoration */}
-                        <motion.div
-                          className="h-0.5 w-0 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: "100%" }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: 1 }}
-                        />
-                      </div>
+                    <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${milestone.color} flex items-center justify-center`}>
+                      {milestone.icon}
+                    </div>
+                    <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center">
+                      <span className="text-xs font-bold text-white">{index + 1}</span>
                     </div>
                   </motion.div>
-                </motion.div>
-              )
-            })}
-          </div>
+                </div>
 
-          {/* Floating CTA */}
-          <motion.div
-            className="mt-20 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500/10 via-emerald-500/10 to-blue-500/10 border border-white/10 backdrop-blur-sm">
-              <Zap className="w-5 h-5 text-cyan-400 animate-pulse" />
-              <span className="text-sm font-medium text-slate-300">
-                Currently open for new opportunities
-              </span>
-            </div>
-          </motion.div>
+                {/* Milestone Card */}
+                <div className="group mt-6">
+                  <div className="p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl h-full min-h-[280px] flex flex-col">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="text-xl font-bold text-white">{milestone.title}</h3>
+                      <span className="px-3 py-1 text-xs font-medium rounded-full bg-white/5 text-slate-300 border border-white/10 flex-shrink-0 ml-2">
+                        {milestone.year}
+                      </span>
+                    </div>
+                    <p className="text-slate-300 mb-4 leading-relaxed flex-grow">
+                      {milestone.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {milestone.skills.map((skill, idx) => (
+                        <motion.span
+                          key={skill}
+                          className="px-3 py-1 text-xs font-medium rounded-full bg-white/5 text-slate-300 border border-white/10"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1 + 0.5 }}
+                          whileHover={{ 
+                            scale: 1.1, 
+                            backgroundColor: "rgba(255,255,255,0.1)",
+                            borderColor: "rgba(34,211,238,0.3)"
+                          }}
+                        >
+                          {skill}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+
+        {/* Stats Section */}
+        <motion.div className="mt-12" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {stats.map((stat, index) => (
+              <motion.div key={stat.label} className="group" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.1 }}>
+                <div className="p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="text-cyan-400">{stat.icon}</div>
+                  </div>
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300">{stat.value}</div>
+                  <div className="text-sm text-slate-400 font-medium">{stat.label}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+      
+            
+             
+           
+         
+      </motion.div>
     </section>
   )
+}
+
+export function About() {
+  return <JourneySection />
 }
