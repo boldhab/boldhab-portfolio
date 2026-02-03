@@ -1,6 +1,6 @@
 import emailjs from "emailjs-com"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send, CheckCircle, GitHub, Linkedin, Telegram } from "lucide-react"
+import { Mail, Phone, MapPin, Send, CheckCircle, Github, Linkedin } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import type { ChangeEvent, FormEvent } from "react"
 
@@ -69,8 +69,8 @@ const Contact = () => {
   }, [])
 
   const socialLinks = [
-    { name: "Telegram", href: "https://t.me/habtamu_befekadu", icon: <Telegram className="w-5 h-5" />, ariaLabel: "Habtamu Befekadu on Telegram" },
-    { name: "GitHub", href: "https://github.com/boldhad", icon: <GitHub className="w-5 h-5" />, ariaLabel: "Habtamu Befekadu on GitHub" },
+    { name: "Telegram", href: "https://t.me/habtamu_befekadu", icon: <Send className="w-5 h-5" />, ariaLabel: "Habtamu Befekadu on Telegram" },
+    { name: "GitHub", href: "https://github.com/boldhad", icon: <Github className="w-5 h-5" />, ariaLabel: "Habtamu Befekadu on GitHub" },
     { name: "LinkedIn", href: "https://www.linkedin.com/in/habtam-befekadu", icon: <Linkedin className="w-5 h-5" />, ariaLabel: "Habtamu Befekadu on LinkedIn" },
   ]
 
