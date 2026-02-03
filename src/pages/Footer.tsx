@@ -1,85 +1,44 @@
-import { Github, Linkedin, Mail, Heart, ExternalLink } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import { Link } from "react-router-dom"
-
 export function Footer() {
   return (
-    <footer className="mt-16 border-t border-[#262626] dark:border-gray-800 py-8">
-      <div className="max-w-4xl mx-auto px-4">
-        {/* Mini Site Map */}
-        <div className="flex flex-wrap justify-center gap-4 mb-6">
-          <Button
-            variant="ghost"
-            asChild
-            className="hover:bg-[#262626] hover:text-white"
-          >
-            <Link to="/projects" className="flex items-center gap-2">
-              <ExternalLink className="w-4 h-4" />
-              Projects
-            </Link>
-          </Button>
-          <Button
-            variant="ghost"
-            asChild
-            className="hover:bg-[#262626] hover:text-white"
-          >
-            <Link to="/contact" className="flex items-center gap-2">
-              <Mail className="w-4 h-4" />
-              Contact
-            </Link>
-          </Button>
-          <Button
-            variant="ghost"
-            asChild
-            className="hover:bg-[#262626] hover:text-white"
-          >
-            <Link
-              to="https://github.com/sami855-ux"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2"
-            >
-              <Github className="w-4 h-4" />
-              GitHub
-            </Link>
-          </Button>
-          <Button
-            variant="ghost"
-            asChild
-            className="hover:bg-[#262626] hover:text-white"
-          >
-            <Link
-              to="https://www.linkedin.com/in/samiux855/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2"
-            >
-              <Linkedin className="w-4 h-4" />
-              LinkedIn
-            </Link>
-          </Button>
-        </div>
+    <footer className="relative mt-16 overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 -z-10">
+        {/* Gradient base */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-300/30 via-blue-500/20 to-blue-900/40 backdrop-blur-md" />
 
-        {/* Email and Copyright */}
-        <div className="text-center mb-4">
-          <a
-            href="mailto:your.email@example.com"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground  transition-colors"
-          >
-            <Mail className="w-4 h-4" />
-            samitale86@gmail.com
-          </a>
-          <p className="mt-2 text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Samuel tale. All rights reserved.
-          </p>
-        </div>
+        {/* Floating circles */}
+        <motion.div
+          className="absolute w-72 h-72 bg-blue-400/30 rounded-full blur-3xl"
+          animate={{
+            x: [0, 80, 0],
+            y: [0, -60, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          style={{ top: "10%", left: "15%" }}
+        />
 
-        {/* Cute Message */}
-        <div className="flex justify-center items-center gap-2 text-sm text-muted-foreground">
-          <Heart className="w-4 h-4 fill-current text-rose-500" />
-          <span>Built with ☕ & React. Deployed on Vercel.</span>
-        </div>
+        <motion.div
+          className="absolute w-96 h-96 bg-blue-700/30 rounded-full blur-3xl"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 80, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          style={{ bottom: "10%", right: "10%" }}
+        />
+      </div>
+
+      {/* Actual footer content */}
+      <div className="relative max-w-4xl mx-auto px-4 py-10 border-t border-white/10">
+        {/* your existing footer JSX goes here */}
       </div>
     </footer>
   )
