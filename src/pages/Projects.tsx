@@ -37,8 +37,8 @@ const projects = [
       "REST API",
       "Tailwind CSS",
     ],
-    github: "#",
-    live: "#",
+    github: "https://github.com/boldhab/job-site.git",
+    live: "",
     image: ethioCareerImg,
     category: "Full-Stack",
     year: "2025",
@@ -60,8 +60,8 @@ const projects = [
       "Next-Themes",
       "Responsive Design",
     ],
-    github: "#",
-    live: "#",
+    github: "https://github.com/boldhab/scoial-manager.git",
+    live: "https://scoial-manager.vercel.app/",
     image: socialDashboardImg,
     category: "Frontend",
     year: "2025",
@@ -83,8 +83,8 @@ const projects = [
       "Responsive",
       "Booking System",
     ],
-    github: "#",
-    live: "#",
+    github: "https://github.com/boldhab/Hotel-managment-front-end.git",
+    live: "https://hotel-app-et.netlify.app/",
     image: hotelManagementImg,
     category: "Frontend",
     year: "2025",
@@ -223,7 +223,7 @@ const Projects = () => {
           >
             <Zap className="w-5 h-5 text-blue-400 animate-pulse" />
             <span className="text-sm font-bold text-blue-300 uppercase tracking-widest">
-              Featured Projects
+              Projects
             </span>
           </motion.div>
 
@@ -238,14 +238,7 @@ const Projects = () => {
             </span>
           </motion.h2>
 
-          <motion.p
-            className="text-slate-300 max-w-2xl mx-auto text-xl leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            Showcasing innovative solutions that blend cutting-edge technology with elegant design
-          </motion.p>
+          
         </div>
 
         {/* Projects Grid */}
@@ -408,16 +401,14 @@ const Projects = () => {
               </motion.div>
               
               <h3 className="text-3xl font-bold text-white mb-4">Ready for the Next Project?</h3>
-              <p className="text-slate-300 mb-8 max-w-xl mx-auto text-lg">
-                Let's collaborate on something amazing. Explore more projects or start building together.
-              </p>
+             
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
                   <Link to="/projects">
                     <Button className="h-14 px-10 rounded-xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:from-blue-400 hover:via-blue-500 hover:to-blue-600 hover:shadow-[0_0_40px_rgba(59,130,246,0.6)] text-white text-lg font-bold border-0 transition-all duration-500 shadow-2xl">
                       <Eye className="mr-3 h-6 w-6" />
-                      Explore All Projects
+                      View All Projects
                       <ArrowUpRight className="ml-3 h-5 w-5" />
                     </Button>
                   </Link>
@@ -429,7 +420,7 @@ const Projects = () => {
                       className="h-14 px-10 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 hover:from-purple-500 hover:via-purple-600 hover:to-purple-700 hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] text-white text-lg font-bold border-0 transition-all duration-500 shadow-2xl"
                     >
                       <Zap className="mr-3 h-6 w-6" />
-                      Start Collaboration
+                      Contact us
                     </Button>
                   </Link>
                 </motion.div>
