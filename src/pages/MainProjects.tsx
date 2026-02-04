@@ -8,15 +8,16 @@ import { Footer } from "./Footer"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/blur.css"
 // Import your images
-import realEstateImg from "../assets/real-estate.png"  
-import ethioCareerImg from "../assets/ethio-career.png"
-import dashboardImg from "../assets/dashboard.png"
+import ethioCareerImg from "../assets/jobsite.png"
+import dashboardImg from "../assets/dash-board.png"
 import hotelImg from "../assets/hotel.png"
-import coffeeShopImg from "../assets/coffee-shop.png"
-import shoesEcomImg from "../assets/shoes-ecom.png"
-import taskManagerImg from "../assets/task-manager.png"
-import habCommerceImg from "../assets/hab-commerce.png"
+import realEstateImg from "../assets/real-estate.png"
 import gamesImg from "../assets/games.png"
+import habCommerceImg from "../assets/e-commerce.png"
+import shoesEcomImg from "../assets/shoes.png"
+import taskManagerImg from "../assets/taskmanager.png"
+import coffeeShopImg from "../assets/coffiee.png"
+
 
 
 
