@@ -49,7 +49,7 @@ export function ClientMarqueeRow() {
           >
             <div className="relative w-16 h-16 mb-3">
               <img
-                src="@/assets/logo.jpg"
+                src="@/assets/logo.png"
                 alt={client.name}
                 className="object-contain dark:invert w-full h-full"
                 style={{ filter: "brightness(0) invert(1)" }}

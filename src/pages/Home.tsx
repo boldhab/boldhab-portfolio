@@ -190,32 +190,20 @@ export default function Home() {
 
             {/* Name */}
             <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              <span className="bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
-                Habtamu{" "}
-              </span>
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Befekadu
-              </span>
-              <motion.span
-                className="ml-2 inline-block"
-                animate={{
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: 1,
-                }}
-              >
-                👋
-              </motion.span>
-            </motion.h1>
+  className="text-3xl md:text-5xl font-bold mb-4"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.4 }}
+>
+  <span className="bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+    Habtamu{" "}
+  </span>
+  <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+    Befekadu
+  </span>
+  
+</motion.h1>
+
 
             {/* Specialization */}
             <motion.div
@@ -229,15 +217,7 @@ export default function Home() {
               </h2>
             </motion.div>
 
-            {/* Experience */}
-            <motion.p
-              className="text-lg text-slate-300 mb-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <span className="text-blue-400 font-semibold">2+ years</span> of professional experience
-            </motion.p>
+           
 
             {/* Education */}
             <motion.p
@@ -249,16 +229,7 @@ export default function Home() {
               <span className="text-cyan-400 font-semibold">Software Engineering</span> student at Debre Birhan University
             </motion.p>
 
-            {/* Location */}
-            <motion.div
-              className="flex items-center gap-2 text-slate-400 mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <MapPin className="w-4 h-4" />
-              <span className="text-sm">Addis Ababa, Ethiopia</span>
-            </motion.div>
+           
 
             {/* Social Links */}
             <motion.div
@@ -295,54 +266,58 @@ export default function Home() {
 
             {/* CTA Buttons - Now with 3 buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 w-full max-w-md"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-            >
-              <motion.div 
-                className="flex-1"
-                whileHover={{ scale: 1.05 }} 
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link to="/projects">
-                  <Button className="w-full h-12 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all duration-300 font-semibold">
-                    View Projects
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
-              </motion.div>
+  className="flex flex-col sm:flex-row gap-3 w-full max-w-md"
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.8 }}
+>
+  {/* View Projects */}
+  <motion.div
+    className="flex-1"
+    whileHover={{ scale: 1.04 }}
+    whileTap={{ scale: 0.96 }}
+  >
+    <Link to="/projects">
+      <Button className="w-full h-10 text-sm rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 hover:shadow-[0_0_16px_rgba(59,130,246,0.3)] transition-all duration-300 font-semibold">
+        View Projects
+        <ArrowRight className="ml-2 w-4 h-4" />
+      </Button>
+    </Link>
+  </motion.div>
 
-              <motion.div 
-                className="flex-1"
-                whileHover={{ scale: 1.05 }} 
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link to="/contact">
-                  <Button 
-                    variant="outline" 
-                    className="w-full h-12 rounded-xl border-blue-500/30 text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all duration-300 font-semibold"
-                  >
-                    Contact Me
-                  </Button>
-                </Link>
-              </motion.div>
+  {/* Contact Me */}
+  <motion.div
+    className="flex-1"
+    whileHover={{ scale: 1.04 }}
+    whileTap={{ scale: 0.96 }}
+  >
+    <Link to="/contact">
+      <Button
+        variant="outline"
+        className="w-full h-10 text-sm rounded-lg border-emerald-500/40 text-emerald-400 hover:border-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 font-semibold"
+      >
+        Contact Me
+      </Button>
+    </Link>
+  </motion.div>
 
-              <motion.div 
-                className="flex-1"
-                whileHover={{ scale: 1.05 }} 
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button 
-                  onClick={handleDownloadCV}
-                  variant="ghost"
-                  className="w-full h-12 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-blue-500/30 transition-all duration-300 font-semibold"
-                >
-                  <Download className="mr-2 w-4 h-4" />
-                  My CV
-                </Button>
-              </motion.div>
-            </motion.div>
+  {/* CV */}
+  <motion.div
+    className="flex-1"
+    whileHover={{ scale: 1.04 }}
+    whileTap={{ scale: 0.96 }}
+  >
+    <Button
+      onClick={handleDownloadCV}
+      variant="ghost"
+      className="w-full h-10 text-sm rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-blue-500/30 transition-all duration-300 font-semibold"
+    >
+      <Download className="mr-2 w-4 h-4" />
+      My CV
+    </Button>
+  </motion.div>
+</motion.div>
+
           </motion.div>
 
           {/* Right Column - Info & Stats */}
@@ -360,20 +335,20 @@ export default function Home() {
             >
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <Code className="w-6 h-6 text-blue-400" />
-                About My Work
+                About Me
               </h2>
-              <p className="text-slate-300 leading-relaxed mb-3">
-                Full-stack developer with <span className="text-blue-400 font-semibold">2+ years</span> of experience 
-                specializing in <span className="text-blue-400 font-semibold">MERN stack</span> and <span className="text-red-400 font-semibold">Laravel</span> development. 
-                I build modern, scalable web applications that deliver exceptional user experiences 
-                while maintaining clean, efficient, and maintainable code architecture.
-              </p>
+
               <p className="text-slate-300 leading-relaxed">
-                Currently pursuing a <span className="text-cyan-400 font-semibold">Software Engineering degree</span> at 
-                <span className="text-cyan-300 font-semibold"> Debre Birhan University</span>, where I'm combining 
-                academic knowledge with practical experience to create innovative solutions.
+                Full-stack developer with{" "}
+                <span className="text-blue-400 font-semibold">2+ years</span> of experience in{" "}
+                <span className="text-blue-400 font-semibold">MERN</span> and{" "}
+                <span className="text-red-400 font-semibold">Laravel</span>, building scalable, modern web applications with clean, maintainable code.  
+                Software Engineering student at{" "}
+                <span className="text-cyan-300 font-semibold">Debre Birhan University</span>.
               </p>
             </motion.div>
+
+
 
             {/* Stats */}
             <motion.div
@@ -384,8 +359,8 @@ export default function Home() {
             >
               {[
                 { value: "2+", label: "Years Experience", icon: <Sparkles className="w-4 h-4" /> },
-                { value: "50+", label: "Projects Built", icon: <Server className="w-4 h-4" /> },
-                { value: "Student", label: "Debre Birhan Uni", icon: <FileText className="w-4 h-4" /> },
+                { value: "15+", label: "Projects Built", icon: <Server className="w-4 h-4" /> },
+                { value: "Student", label: "Debre Birhan University", icon: <FileText className="w-4 h-4" /> },
                 { value: "MERN & Laravel", label: "Specialization", icon: <Database className="w-4 h-4" /> },
               ].map((stat, index) => (
                 <motion.div
@@ -403,73 +378,9 @@ export default function Home() {
               ))}
             </motion.div>
 
-            {/* Experience & Education Cards */}
-            <motion.div
-              className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-            >
-              {/* Professional Experience Card */}
-              <motion.div
-                className="p-5 rounded-xl bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 backdrop-blur-sm"
-                whileHover={{ scale: 1.02, borderColor: "rgba(59, 130, 246, 0.4)" }}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
-                    <Sparkles className="w-5 h-5 text-blue-400" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-white mb-1">Professional Experience</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">
-                      2+ years building production-ready applications with focus on performance, 
-                      scalability, and clean architecture across multiple industries.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+            
 
-              {/* Education Card */}
-              <motion.div
-                className="p-5 rounded-xl bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 backdrop-blur-sm"
-                whileHover={{ scale: 1.02, borderColor: "rgba(34, 211, 238, 0.4)" }}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center flex-shrink-0">
-                    <FileText className="w-5 h-5 text-cyan-400" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-white mb-1">Education</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">
-                      Software Engineering student at Debre Birhan University, 
-                      combining academic excellence with practical development experience.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Additional Info Card */}
-            <motion.div
-              className="p-5 rounded-xl bg-gradient-to-r from-blue-500/5 to-transparent border border-white/10 backdrop-blur-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-            >
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
-                  <Server className="w-5 h-5 text-blue-400" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-white mb-2">My Approach</h4>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Combining academic learning from university with real-world experience, 
-                    I focus on creating solutions that are scalable, maintainable, and aligned 
-                    with both technical best practices and business objectives.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+           
           </motion.div>
         </motion.div>
       </div>
