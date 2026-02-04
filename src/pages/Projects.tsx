@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowUpRight, Github, ExternalLink, Sparkles, Code, Eye, Zap, Clock, Users, Server } from "lucide-react"
+import { ArrowUpRight, Github, ExternalLink, Sparkles, Eye, Zap, Clock, Users, Server } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import {
   Tooltip,
@@ -431,7 +431,7 @@ const Projects = () => {
       </motion.div>
 
       {/* CSS for gradient animation */}
-      <style jsx global>{`
+      <style>{`
         @keyframes gradient {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }

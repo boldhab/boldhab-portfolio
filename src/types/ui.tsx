@@ -29,4 +29,7 @@ export type Project = {
   githubUrl: string
   liveUrl: string
   imageUrl: string
+  category: string
+  color: string
+  techIcons?: React.ReactNode[]
 }

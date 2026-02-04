@@ -1,6 +1,5 @@
 import { motion } from "framer-motion"
-import { Github, Linkedin, Mail, MapPin, Sparkles, ArrowRight, Code, Cpu, Server, Database, Download, FileText } from "lucide-react"
-import { useState } from "react"
+import { Github, Linkedin, Mail, Sparkles, ArrowRight, Code, Server, Database, Download, FileText } from "lucide-react"
 
 import { PersonalCardHeader } from "@/components/PersonalCardHeader"
 import {
@@ -27,8 +26,6 @@ const socialLinks: socialLinks[] = [
 ]
 
 export default function Home() {
-  const [isHovered, setIsHovered] = useState<boolean>(false)
-
   // Function to handle CV download
   const handleDownloadCV = () => {
     // Replace with your actual CV URL or file path
@@ -134,8 +131,6 @@ export default function Home() {
             {/* Profile Image */}
             <motion.div
               className="relative mb-8"
-              onHoverStart={() => setIsHovered(true)}
-              onHoverEnd={() => setIsHovered(false)}
               whileHover={{ scale: 1.05 }}
               animate={{
                 y: [0, -10, 0],
@@ -367,10 +362,9 @@ export default function Home() {
                   key={stat.label}
                   className="p-4 rounded-xl bg-blue-500/5 border border-blue-500/10 backdrop-blur-sm text-center"
                   whileHover={{ scale: 1.05, borderColor: "rgba(59, 130, 246, 0.3)" }}
-                  transition={{ type: "spring", stiffness: 300 }}
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 + index * 0.1 }}
+                  transition={{ type: "spring", stiffness: 300, delay: 0.6 + index * 0.1 }}
                 >
                   <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
                   <div className="text-xs text-slate-400">{stat.label}</div>

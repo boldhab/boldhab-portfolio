@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { useRef } from "react"
-import { GraduationCap, Code, Rocket, Users, Layers, Briefcase, Sparkles, ChevronRight, Award, Clock, Terminal, BookOpen, Zap } from "lucide-react"
+import { GraduationCap, Code, Rocket, Users, Layers, Briefcase, Sparkles, Award, Clock, Terminal } from "lucide-react"
 
 interface JourneyMilestone {
   id: number
@@ -23,7 +23,6 @@ export function JourneySection() {
   const isInView = useInView(containerRef, { once: true, amount: 0.3 })
 
   // Parallax effects
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.5])
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.02, 1])
 

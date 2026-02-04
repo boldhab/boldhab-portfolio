@@ -356,13 +356,13 @@ export function MainProjects() {
                         initial={{ y: 20 }}
                         whileInView={{ y: 0 }}
                       >
-                        {project.techIcons?.map((Icon, i) => (
+                        {project.techIcons?.map((icon, i) => (
                           <motion.div
                             key={i}
                             className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white backdrop-blur-sm"
                             whileHover={{ scale: 1.2, rotate: 10 }}
                           >
-                            {Icon}
+                            {icon}
                           </motion.div>
                         ))}
                       </motion.div>

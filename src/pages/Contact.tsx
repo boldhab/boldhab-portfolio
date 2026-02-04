@@ -171,7 +171,6 @@ const Contact = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const nameRef = useRef<HTMLInputElement>(null);
 
   // Subtle mouse tracking
@@ -202,21 +201,18 @@ const Contact = () => {
   const sendEmail = (e: FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    setErrorMessage("")
-
     emailjs
       .sendForm(
         "service_8oby0sa", "template_jrk5rq9",
         e.target as HTMLFormElement, "Ddw-YUU_qHVSVYCjv"
       )
       .then(
-        (result) => {
+        () => {
           setIsSubmitted(true)
           setIsLoading(false)
           setFormData({ name: "", email: "", subject: "", message: "" })
         },
-        (error) => {
-          setErrorMessage("Oops! Something went wrong. Please try again.")
+        () => {
           setIsLoading(false)
         }
       )
