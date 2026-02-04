@@ -125,8 +125,8 @@ body {
 
   body {
     font-family: var(--font-jakarta);
-    background: #1a1a1a;
-    color: white;
+    background: var(--background);
+    color: var(--foreground);
   }
 
   h1,

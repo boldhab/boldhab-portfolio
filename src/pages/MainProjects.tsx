@@ -185,8 +185,8 @@ export function MainProjects() {
 
   const projectVariants = {
     hidden: { opacity: 0, y: 30 },
-    show: { 
-      opacity: 1, 
+    show: {
+      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
@@ -216,9 +216,9 @@ export function MainProjects() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-blue-950/30 text-white py-20 px-4 sm:px-8 relative overflow-hidden">
+      <div className="min-h-screen bg-background text-foreground py-20 px-4 sm:px-8 relative overflow-hidden dark:bg-gradient-to-b dark:from-slate-950 dark:via-slate-900 dark:to-blue-950/30">
         <Header />
-        
+
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -266,7 +266,7 @@ export function MainProjects() {
           className="max-w-7xl mx-auto pt-5 relative z-10"
         >
           {/* Header */}
-          <motion.header 
+          <motion.header
             className="mb-16 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -279,7 +279,7 @@ export function MainProjects() {
               transition={{ delay: 0.3 }}
             >
               <Sparkles className="w-4 h-4 text-blue-400" />
-              <span className="text-sm font-medium text-blue-300 uppercase tracking-wider">
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-300 uppercase tracking-wider">
                 Portfolio
               </span>
             </motion.div>
@@ -290,7 +290,7 @@ export function MainProjects() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <span className="bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-b from-foreground to-foreground/70 dark:from-white dark:to-blue-200 bg-clip-text text-transparent">
                 Featured{" "}
               </span>
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
@@ -299,7 +299,7 @@ export function MainProjects() {
             </motion.h1>
 
             <motion.p
-              className="text-slate-300 max-w-2xl mx-auto text-lg"
+              className="text-muted-foreground max-w-2xl mx-auto text-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -319,13 +319,13 @@ export function MainProjects() {
               <motion.section
                 key={project.id}
                 variants={projectVariants}
-                className={`relative p-8 rounded-3xl ${project.color} border border-white/10 backdrop-blur-sm`}
+                className={`relative p-8 rounded-3xl ${project.color} border border-border backdrop-blur-sm`}
                 whileHover={{ y: -5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 {/* Category Badge */}
                 <div className="absolute -top-3 left-8">
-                  <span className="px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-medium backdrop-blur-sm">
+                  <span className="px-4 py-1.5 rounded-full bg-secondary/60 border border-border text-xs font-medium text-muted-foreground backdrop-blur-sm">
                     {project.category}
                   </span>
                 </div>
@@ -349,9 +349,9 @@ export function MainProjects() {
                         wrapperClassName="w-full h-full"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      
+
                       {/* Tech Icons Overlay */}
-                      <motion.div 
+                      <motion.div
                         className="absolute bottom-6 left-6 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         initial={{ y: 20 }}
                         whileInView={{ y: 0 }}
@@ -359,7 +359,7 @@ export function MainProjects() {
                         {project.techIcons?.map((icon, i) => (
                           <motion.div
                             key={i}
-                            className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white backdrop-blur-sm"
+                            className="w-10 h-10 rounded-lg bg-background/80 border border-border flex items-center justify-center text-foreground backdrop-blur-sm"
                             whileHover={{ scale: 1.2, rotate: 10 }}
                           >
                             {icon}
@@ -375,7 +375,7 @@ export function MainProjects() {
                       <h2 className="text-2xl md:text-3xl font-bold mb-3">
                         {project.title}
                       </h2>
-                      <p className="text-slate-300 text-lg leading-relaxed">
+                      <p className="text-muted-foreground text-lg leading-relaxed">
                         {project.description}
                       </p>
                     </div>
@@ -390,7 +390,7 @@ export function MainProjects() {
                         {project.features.map((feature, i) => (
                           <motion.li
                             key={i}
-                            className="flex items-start gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                            className="flex items-start gap-3 p-3 rounded-lg bg-secondary/40 hover:bg-secondary/60 transition-colors"
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ delay: i * 0.1 }}
@@ -412,7 +412,7 @@ export function MainProjects() {
                         {project.technologies.map((tech) => (
                           <motion.span
                             key={tech}
-                            className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm hover:border-blue-500/30 hover:bg-blue-500/10 transition-all"
+                            className="px-3 py-1.5 rounded-lg bg-secondary/40 border border-border text-sm hover:border-blue-500/30 hover:bg-blue-500/10 transition-all"
                             whileHover={{ scale: 1.05 }}
                           >
                             {tech}
@@ -427,11 +427,11 @@ export function MainProjects() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-500/30 transition-all group"
+                        className="flex items-center gap-3 px-6 py-3 rounded-xl bg-secondary/50 border border-border hover:bg-secondary/70 hover:border-blue-500/30 transition-all group"
                         whileHover={{ x: 3 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <Github className="w-5 h-5 text-slate-300 group-hover:text-white" />
+                        <Github className="w-5 h-5 text-muted-foreground group-hover:text-foreground" />
                         <span className="font-medium">Code</span>
                       </motion.a>
 

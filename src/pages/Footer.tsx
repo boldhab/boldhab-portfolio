@@ -13,38 +13,38 @@ interface MagneticButtonProps {
 const MagneticButton = ({ children, className }: MagneticButtonProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  
+
   const springConfig = { damping: 20, stiffness: 250, mass: 0.1 };
   const xSpring = useSpring(x, springConfig);
   const ySpring = useSpring(y, springConfig);
-  
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current || !isHovered) return;
-    
+
     const { width, height, left, top } = ref.current.getBoundingClientRect();
     const centerX = left + width / 2;
     const centerY = top + height / 2;
-    
+
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
-    
+
     const strength = 0.25;
     const newX = distanceX * strength;
     const newY = distanceY * strength;
-    
+
     x.set(newX);
     y.set(newY);
   };
-  
+
   const handleMouseLeave = () => {
     setIsHovered(false);
     x.set(0);
     y.set(0);
   };
-  
+
   return (
     <motion.div
       ref={ref}
@@ -69,39 +69,39 @@ const BackToTopButton = () => {
   const { scrollYProgress } = useScroll();
   const [isVisible, setIsVisible] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
-  
+
   const scaleSpring = useSpring(scrollYProgress, {
     stiffness: 150,
     damping: 25,
     restDelta: 0.001,
   });
-  
+
   const scale = useTransform(scaleSpring, [0, 1], [0.3, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 1], [0, 0, 1]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsVisible(scrollTop > 400);
     };
-    
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
+
   const scrollToTop = () => {
     if (isScrolling) return;
-    
+
     setIsScrolling(true);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-    
+
     setTimeout(() => setIsScrolling(false), 1000);
   };
-  
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -145,7 +145,7 @@ const BackToTopButton = () => {
               </linearGradient>
             </defs>
           </svg>
-          
+
           {/* Animated arrow */}
           <motion.div
             style={{ scale, opacity, rotate }}
@@ -153,7 +153,7 @@ const BackToTopButton = () => {
           >
             <ArrowUp className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
           </motion.div>
-          
+
           {/* Pulse effect on hover */}
           <motion.div
             className="absolute inset-0 rounded-full border border-blue-400/30"
@@ -176,23 +176,23 @@ const BackToTopButton = () => {
 export function Footer() {
   const containerRef = useRef<HTMLElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
-  
+
   const containerControls = useAnimation();
   const itemControls = useAnimation();
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
-          
+
           containerControls.start({
             opacity: 1,
             y: 0,
             transition: { duration: 0.6, ease: "easeOut" },
           });
-          
+
           itemControls.start((i) => ({
             opacity: 1,
             y: 0,
@@ -209,21 +209,21 @@ export function Footer() {
         rootMargin: "50px",
       }
     );
-    
+
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
-    
+
     return () => observer.disconnect();
   }, [containerControls, itemControls, hasAnimated]);
-  
+
   const navItems = [
     { to: "/projects", icon: ExternalLink, label: "Projects", color: "hover:border-blue-400/50 hover:text-blue-300" },
     { to: "/contact", icon: Mail, label: "Contact", color: "hover:border-cyan-400/50 hover:text-cyan-300" },
     { to: "https://github.com/boldhab", icon: Github, label: "GitHub", external: true, color: "hover:border-slate-400/50 hover:text-slate-300" },
     { to: "https://www.linkedin.com/in/habtam-befekadu", icon: Linkedin, label: "LinkedIn", external: true, color: "hover:border-blue-500/50 hover:text-blue-400" },
   ];
-  
+
   return (
     <>
       <motion.footer
@@ -236,7 +236,7 @@ export function Footer() {
         <div className="absolute inset-0">
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-blue-950/10 via-transparent to-transparent" />
-          
+
           {/* Floating dots */}
           {[...Array(6)].map((_, i) => (
             <motion.div
@@ -258,11 +258,11 @@ export function Footer() {
               }}
             />
           ))}
-          
+
           {/* Bottom glow line */}
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
         </div>
-        
+
         <div className="relative max-w-5xl mx-auto px-6">
           {/* Navigation Links */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -346,9 +346,9 @@ export function Footer() {
               <Code className="w-4 h-4 text-blue-400" />
               <span className="text-sm text-slate-300">Built with React, TypeScript & Tailwind</span>
             </div>
-            
+
             {/* Copyright */}
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.6 }}
@@ -367,7 +367,7 @@ export function Footer() {
           >
             {/* Animated coffee cup */}
             <motion.div
-              animate={{ 
+              animate={{
                 rotate: [0, 5, 0, -5, 0],
                 y: [0, -2, 0],
               }}
@@ -380,10 +380,10 @@ export function Footer() {
             >
               <Coffee className="w-5 h-5 text-amber-600" />
             </motion.div>
-            
+
             {/* Beating heart */}
             <motion.div
-              animate={{ 
+              animate={{
                 scale: [1, 1.2, 1],
               }}
               transition={{
@@ -394,17 +394,17 @@ export function Footer() {
             >
               <Heart className="w-5 h-5 fill-rose-500 text-rose-500" />
             </motion.div>
-            
+
             <span className="text-sm">
               Crafted with care and deployed on Vercel
             </span>
           </motion.div>
         </div>
-        
+
         {/* Footer bottom gradient */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
       </motion.footer>
-      
+
       <BackToTopButton />
     </>
   );

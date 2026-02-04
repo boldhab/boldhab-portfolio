@@ -97,7 +97,7 @@ export function JourneySection() {
       className="relative min-h-screen py-20 md:py-32 overflow-hidden"
     >
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      <div className="absolute inset-0 bg-background transition-colors duration-300">
         {/* Floating Elements */}
         <motion.div
           className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full"
@@ -121,10 +121,10 @@ export function JourneySection() {
         <motion.div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(34, 211, 238, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(34, 211, 238, 0.03) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
+                              linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
             backgroundSize: '60px 60px',
-            opacity,
+            opacity: 0.03,
           }}
         />
       </div>
@@ -135,18 +135,18 @@ export function JourneySection() {
         <motion.div className="text-center mb-16 md:mb-24" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
           <motion.div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm font-medium text-cyan-300">Evolution & Growth</span>
+            <span className="text-sm font-medium text-blue-500">Evolution & Growth</span>
           </motion.div>
-          <motion.h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-cyan-100 to-emerald-100 bg-clip-text text-transparent" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
+          <motion.h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-foreground/90 to-blue-500 bg-clip-text text-transparent" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
             My{" "}
             <span className="relative">
-              <span className="relative bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent">
+              <span className="relative bg-gradient-to-r from-blue-500 via-cyan-500 to-emerald-500 bg-clip-text text-transparent">
                 Development
               </span>
             </span>{" "}
             Journey
           </motion.h2>
-          <motion.p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}>
+          <motion.p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}>
             From academic foundations to professional full-stack development, follow my path of continuous learning and growth
           </motion.p>
         </motion.div>
@@ -160,7 +160,7 @@ export function JourneySection() {
               <motion.div
                 key={milestone.id}
                 className="relative"
-                style={{ 
+                style={{
                   width: 'calc(100% - 12px)',
                   maxWidth: '400px',
                   flex: '1 1 300px' // This makes cards flexible
@@ -169,7 +169,7 @@ export function JourneySection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ 
+                whileHover={{
                   y: -10,
                   transition: { type: "spring", stiffness: 300 }
                 }}
@@ -177,7 +177,7 @@ export function JourneySection() {
                 {/* Timeline Node */}
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
                   <motion.div
-                    className="w-12 h-12 rounded-full border-2 border-white/20 bg-slate-900 flex items-center justify-center relative"
+                    className="w-12 h-12 rounded-full border-2 border-border bg-background flex items-center justify-center relative"
                     whileHover={{ scale: 1.1 }}
                     animate={isInView ? {
                       borderColor: ["rgba(255,255,255,0.2)", "rgba(34,211,238,0.8)", "rgba(255,255,255,0.2)"],
@@ -196,27 +196,27 @@ export function JourneySection() {
 
                 {/* Milestone Card */}
                 <div className="group mt-6">
-                  <div className="p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl h-full min-h-[280px] flex flex-col">
+                  <div className="p-6 rounded-2xl border border-border bg-secondary/30 backdrop-blur-xl h-full min-h-[280px] flex flex-col">
                     <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-xl font-bold text-white">{milestone.title}</h3>
-                      <span className="px-3 py-1 text-xs font-medium rounded-full bg-white/5 text-slate-300 border border-white/10 flex-shrink-0 ml-2">
+                      <h3 className="text-xl font-bold text-foreground">{milestone.title}</h3>
+                      <span className="px-3 py-1 text-xs font-medium rounded-full bg-secondary text-muted-foreground border border-border flex-shrink-0 ml-2">
                         {milestone.year}
                       </span>
                     </div>
-                    <p className="text-slate-300 mb-4 leading-relaxed flex-grow">
+                    <p className="text-muted-foreground mb-4 leading-relaxed flex-grow">
                       {milestone.description}
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {milestone.skills.map((skill, idx) => (
                         <motion.span
                           key={skill}
-                          className="px-3 py-1 text-xs font-medium rounded-full bg-white/5 text-slate-300 border border-white/10"
+                          className="px-3 py-1 text-xs font-medium rounded-full bg-secondary/50 text-muted-foreground border border-border"
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.1 + 0.5 }}
-                          whileHover={{ 
-                            scale: 1.1, 
+                          whileHover={{
+                            scale: 1.1,
                             backgroundColor: "rgba(255,255,255,0.1)",
                             borderColor: "rgba(34,211,238,0.3)"
                           }}
@@ -237,23 +237,23 @@ export function JourneySection() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {stats.map((stat, index) => (
               <motion.div key={stat.label} className="group" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.1 }}>
-                <div className="p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <div className="text-cyan-400">{stat.icon}</div>
+                <div className="p-6 rounded-2xl border border-border bg-secondary/30 backdrop-blur-xl text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/10 mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="text-blue-500">{stat.icon}</div>
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300">{stat.value}</div>
-                  <div className="text-sm text-slate-400 font-medium">{stat.label}</div>
+                  <div className="text-3xl md:text-4xl font-bold text-foreground mb-2 group-hover:text-blue-500 transition-colors duration-300">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
                 </div>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-      
-            
-             
-           
-         
+
+
+
+
+
       </motion.div>
     </section>
   )

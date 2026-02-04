@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
 import { Menu, X, Sparkles, Home } from "lucide-react"
 import type { navItems } from "@/types/ui"
+import { ThemeToggle } from "./ThemeToggle"
 
 const Header = () => {
   const [scrolled, setScrolled] = useState<boolean>(false)
@@ -124,16 +125,16 @@ const Header = () => {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ 
-          duration: 0.6, 
+        transition={{
+          duration: 0.6,
           type: "spring",
           stiffness: 100,
-          damping: 20 
+          damping: 20
         }}
         className={`fixed top-0 left-0 w-full h-16 flex items-center justify-between px-4 md:px-8 lg:px-20 z-40 transition-all duration-300
-          ${scrolled 
-            ? "bg-slate-900/95 backdrop-blur-xl border-b border-white/10 shadow-xl" 
-            : "bg-slate-900/95 backdrop-blur-xl border-b border-white/5"
+          ${scrolled
+            ? "bg-background/95 backdrop-blur-xl border-b border-border shadow-xl"
+            : "bg-background/95 backdrop-blur-xl border-b border-border/50"
           }`}
         style={{ opacity: 1 }}
       >
@@ -143,8 +144,8 @@ const Header = () => {
           whileTap={{ scale: 0.95 }}
           className="flex items-center gap-2"
         >
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent flex items-center gap-2"
             onClick={() => handleClick("home")}
           >
@@ -166,11 +167,10 @@ const Header = () => {
                 <Link
                   to={item.href}
                   onClick={() => handleClick(item.id, item.type)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                    activeTab === item.id
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${activeTab === item.id
                       ? "text-blue-400"
                       : "text-slate-300 hover:text-white"
-                  }`}
+                    }`}
                 >
                   {item.id === "home" && <Home className="w-4 h-4" />}
                   <span className="text-sm font-medium">{item.name}</span>
@@ -188,20 +188,25 @@ const Header = () => {
           </ul>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <motion.button
-          className="md:hidden w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-blue-500/30 hover:bg-blue-500/10 transition-all"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="w-5 h-5" />
-          ) : (
-            <Menu className="w-5 h-5" />
-          )}
-        </motion.button>
+        {/* Mobile Menu Button & Theme Toggle */}
+        <div className="flex items-center gap-2">
+          <div className="hidden md:block">
+            <ThemeToggle />
+          </div>
+          <motion.button
+            className="md:hidden w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-foreground hover:text-white hover:border-blue-500/30 hover:bg-blue-500/10 transition-all"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </motion.button>
+        </div>
 
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
@@ -209,7 +214,7 @@ const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-16 bg-slate-900/95 backdrop-blur-xl md:hidden z-30"
+            className="fixed inset-0 top-16 bg-background/95 backdrop-blur-xl md:hidden z-30"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <motion.div
@@ -230,17 +235,28 @@ const Header = () => {
                     <Link
                       to={item.href}
                       onClick={() => handleClick(item.id, item.type)}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
-                        activeTab === item.id
+                      className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${activeTab === item.id
                           ? "text-blue-400"
                           : "text-slate-300 hover:text-white"
-                      }`}
+                        }`}
                     >
                       {item.id === "home" && <Home className="w-5 h-5" />}
                       <span className="text-base font-medium">{item.name}</span>
                     </Link>
                   </motion.li>
                 ))}
+                {/* Mobile Theme Toggle */}
+                <motion.li
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: navItems.length * 0.1 }}
+                  className="px-4 py-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-base font-medium text-foreground">Theme</span>
+                    <ThemeToggle />
+                  </div>
+                </motion.li>
               </ul>
             </motion.div>
           </motion.div>

@@ -72,7 +72,7 @@ const FloatingParticles = () => {
       {particles.map((p) => (
         <motion.div
           key={p.id}
-          className="absolute rounded-full bg-blue-400/20"
+          className="absolute rounded-full bg-blue-400/10 dark:bg-blue-400/20"
           style={{
             width: p.size,
             height: p.size,
@@ -103,7 +103,7 @@ const BlueBackground = () => {
     <>
       {/* Primary Blue Gradient */}
       <motion.div
-        className="absolute top-1/4 -left-20 w-72 h-72 rounded-full"
+        className="absolute top-1/4 -left-20 w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.06)_0%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(59,130,246,0.12)_0%,transparent_70%)]"
         animate={{
           x: [0, 30, 0],
           y: [0, -15, 0],
@@ -115,14 +115,13 @@ const BlueBackground = () => {
           ease: "easeInOut",
         }}
         style={{
-          background: "radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
 
       {/* Cyan Accent */}
       <motion.div
-        className="absolute bottom-1/4 -right-20 w-64 h-64 rounded-full"
+        className="absolute bottom-1/4 -right-20 w-64 h-64 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.05)_0%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(34,211,238,0.1)_0%,transparent_70%)]"
         animate={{
           x: [0, -25, 0],
           y: [0, 20, 0],
@@ -135,7 +134,6 @@ const BlueBackground = () => {
           delay: 0.5,
         }}
         style={{
-          background: "radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 70%)",
           filter: "blur(35px)",
         }}
       />
@@ -144,7 +142,7 @@ const BlueBackground = () => {
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 rounded-full bg-blue-500/30"
+          className="absolute w-1 h-1 rounded-full bg-blue-500/15 dark:bg-blue-500/30"
           style={{
             left: `${10 + i * 12}%`,
             top: `${20 + i * 10}%`,
@@ -235,7 +233,7 @@ const Contact = () => {
   ]
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950/30 selection:bg-blue-500/30 overflow-hidden">
+    <div className="relative min-h-screen bg-background transition-colors duration-300 selection:bg-blue-500/30 overflow-hidden">
       <Header />
       <FloatingParticles />
       <BlueBackground />
@@ -250,11 +248,11 @@ const Contact = () => {
         </motion.div>
 
         {/* Animated Grid */}
-        <div 
-          className="absolute inset-0 opacity-10"
+        <div
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.1]"
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-                             linear-gradient(0deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(90deg, currentColor 1px, transparent 1px),
+                             linear-gradient(0deg, currentColor 1px, transparent 1px)`,
             backgroundSize: '50px 50px',
           }}
         />
@@ -275,15 +273,15 @@ const Contact = () => {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 rounded-full border border-blue-500/20 bg-blue-500/10 backdrop-blur-sm"
             >
-              <Sparkles className="w-3 h-3 text-blue-400" />
-              <span className="text-xs font-medium text-blue-300 uppercase tracking-wider">Contact</span>
+              <Sparkles className="w-3 h-3 text-blue-500" />
+              <span className="text-xs font-medium text-blue-600 dark:text-blue-300 uppercase tracking-wider">Contact</span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent"
+              className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-b from-foreground to-foreground/80 bg-clip-text text-transparent"
             >
               {isSubmitted ? "Message Sent!" : "Let's Work Together"}
             </motion.h1>
@@ -292,7 +290,7 @@ const Contact = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-slate-300 max-w-md mx-auto text-sm md:text-base"
+              className="text-muted-foreground max-w-md mx-auto text-sm md:text-base"
             >
               {isSubmitted
                 ? "I'll get back to you within 24 hours."
@@ -308,14 +306,14 @@ const Contact = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <div className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-lg hover:border-blue-500/30 transition-all duration-300">
+              <div className="p-8 rounded-2xl bg-secondary/30 border border-border backdrop-blur-sm shadow-lg hover:border-blue-500/30 transition-all duration-300">
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                    <MessageSquare className="w-5 h-5 text-blue-400" />
+                    <MessageSquare className="w-5 h-5 text-blue-500" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-semibold text-white">Get in Touch</h2>
-                    <p className="text-slate-400 text-sm">Direct ways to reach me</p>
+                    <h2 className="text-xl font-semibold text-foreground">Get in Touch</h2>
+                    <p className="text-muted-foreground text-sm">Direct ways to reach me</p>
                   </div>
                 </div>
 
@@ -330,20 +328,20 @@ const Contact = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.6 + index * 0.1 }}
                     >
-                      <div className="w-12 h-12 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500/10 group-hover:border-blue-500/20 transition-all">
+                      <div className="w-12 h-12 rounded-xl bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500/10 group-hover:border-blue-500/20 transition-all">
                         {item.icon}
                       </div>
                       <div className="flex-1">
-                        <span className="text-xs text-slate-400">{item.label}</span>
-                        <p className="text-white font-medium text-sm">{item.value}</p>
+                        <span className="text-xs text-muted-foreground">{item.label}</span>
+                        <p className="text-foreground font-medium text-sm">{item.value}</p>
                       </div>
                     </motion.a>
                   ))}
                 </div>
 
                 {/* Social Links */}
-                <div className="mt-10 pt-8 border-t border-white/10">
-                  <p className="text-sm text-slate-400 mb-4">Connect Online</p>
+                <div className="mt-10 pt-8 border-t border-border">
+                  <p className="text-sm text-muted-foreground mb-4">Connect Online</p>
                   <div className="flex gap-3">
                     {socialLinks.map((social, index) => (
                       <MagneticWrapper key={social.name} strength={0.08}>
@@ -351,7 +349,7 @@ const Contact = () => {
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`w-10 h-10 rounded-lg bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-slate-300 ${social.color} transition-all duration-300`}
+                          className={`w-10 h-10 rounded-lg bg-blue-500/5 border border-blue-500/10 flex items-center justify-center text-muted-foreground ${social.color} transition-all duration-300`}
                           initial={{ opacity: 0, scale: 0 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.8 + index * 0.1, type: "spring" }}
@@ -389,8 +387,8 @@ const Contact = () => {
                     >
                       <CheckCircle className="w-10 h-10 text-white" />
                     </motion.div>
-                    <h3 className="text-2xl font-bold text-white mb-3">Message Sent!</h3>
-                    <p className="text-slate-300 mb-8">I'll review your message and get back to you soon.</p>
+                    <h3 className="text-2xl font-bold text-foreground mb-3">Message Sent!</h3>
+                    <p className="text-muted-foreground mb-8">I'll review your message and get back to you soon.</p>
                     <Button
                       onClick={() => setIsSubmitted(false)}
                       className="h-12 px-8 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all"
@@ -401,25 +399,25 @@ const Contact = () => {
                 ) : (
                   <motion.div
                     key="form"
-                    className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-lg hover:border-blue-500/30 transition-all duration-300"
+                    className="p-8 rounded-2xl bg-secondary/30 border border-border backdrop-blur-sm shadow-lg hover:border-blue-500/30 transition-all duration-300"
                   >
                     <div className="flex items-center gap-3 mb-8">
                       <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                        <Send className="w-5 h-5 text-blue-400" />
+                        <Send className="w-5 h-5 text-blue-500" />
                       </div>
                       <div>
-                        <h2 className="text-xl font-semibold text-white">Send a Message</h2>
-                        <p className="text-slate-400 text-sm">Tell me about your project</p>
+                        <h2 className="text-xl font-semibold text-foreground">Send a Message</h2>
+                        <p className="text-muted-foreground text-sm">Tell me about your project</p>
                       </div>
                     </div>
 
                     <form className="space-y-6" onSubmit={sendEmail}>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <label className="text-sm text-slate-300">Your Name</label>
+                          <label className="text-sm text-muted-foreground">Your Name</label>
                           <Input
                             ref={nameRef}
-                            className="h-12 rounded-xl bg-blue-500/5 border-blue-500/10 text-white placeholder:text-slate-500 focus:bg-blue-500/10 focus:border-blue-400/50 transition-all"
+                            className="h-12 rounded-xl bg-secondary/50 border-border text-foreground placeholder:text-muted-foreground focus:bg-secondary focus:border-blue-500 transition-all"
                             id="name"
                             name="name"
                             placeholder="John Smith"
@@ -429,9 +427,9 @@ const Contact = () => {
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-sm text-slate-300">Your Email</label>
+                          <label className="text-sm text-muted-foreground">Your Email</label>
                           <Input
-                            className="h-12 rounded-xl bg-blue-500/5 border-blue-500/10 text-white placeholder:text-slate-500 focus:bg-blue-500/10 focus:border-blue-400/50 transition-all"
+                            className="h-12 rounded-xl bg-secondary/50 border-border text-foreground placeholder:text-muted-foreground focus:bg-secondary focus:border-blue-500 transition-all"
                             id="email"
                             name="email"
                             type="email"
@@ -444,9 +442,9 @@ const Contact = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-sm text-slate-300">Subject</label>
+                        <label className="text-sm text-muted-foreground">Subject</label>
                         <Input
-                          className="h-12 rounded-xl bg-blue-500/5 border-blue-500/10 text-white placeholder:text-slate-500 focus:bg-blue-500/10 focus:border-blue-400/50 transition-all"
+                          className="h-12 rounded-xl bg-secondary/50 border-border text-foreground placeholder:text-muted-foreground focus:bg-secondary focus:border-blue-500 transition-all"
                           id="subject"
                           name="subject"
                           placeholder="Project inquiry"
@@ -457,13 +455,13 @@ const Contact = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-sm text-slate-300">Message</label>
+                        <label className="text-sm text-muted-foreground">Message</label>
                         <Textarea
                           id="message"
                           name="message"
                           placeholder="Describe your project, timeline, and requirements..."
                           rows={5}
-                          className="rounded-xl bg-blue-500/5 border-blue-500/10 text-white placeholder:text-slate-500 focus:bg-blue-500/10 focus:border-blue-400/50 resize-none transition-all"
+                          className="rounded-xl bg-secondary/50 border-border text-foreground placeholder:text-muted-foreground focus:bg-secondary focus:border-blue-500 resize-none transition-all"
                           value={formData.message}
                           onChange={handleChange}
                           required
@@ -498,7 +496,7 @@ const Contact = () => {
 
           {/* Footer Note */}
           <motion.div
-            className="mt-12 text-center text-slate-400 text-xs"
+            className="mt-12 text-center text-muted-foreground text-xs"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}

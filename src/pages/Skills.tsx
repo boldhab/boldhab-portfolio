@@ -71,11 +71,11 @@ const Skills = () => {
       icon: <Palette className="w-5 h-5" />,
       skills: [
         { icon: <SiReact size={24} />, name: "React", color: "text-[#61DAFB]", level: 95 },
-        { icon: <SiNextdotjs size={24} />, name: "Next.js", color: "text-white", level: 90 },
+        { icon: <SiNextdotjs size={24} />, name: "Next.js", color: "text-foreground", level: 90 },
         { icon: <SiTypescript size={24} />, name: "TypeScript", color: "text-[#3178C6]", level: 88 },
         { icon: <SiJavascript size={24} />, name: "JavaScript", color: "text-[#F7DF1E]", level: 92 },
         { icon: <SiTailwindcss size={24} />, name: "Tailwind", color: "text-[#38BDF8]", level: 94 },
-        { icon: <SiFramer size={24} />, name: "Framer Motion", color: "text-white", level: 89 },
+        { icon: <SiFramer size={24} />, name: "Framer Motion", color: "text-foreground", level: 89 },
       ]
     },
     {
@@ -83,7 +83,7 @@ const Skills = () => {
       icon: <Server className="w-5 h-5" />,
       skills: [
         { icon: <SiNodedotjs size={24} />, name: "Node.js", color: "text-[#339933]", level: 90 },
-        { icon: <SiExpress size={24} />, name: "Express", color: "text-white", level: 88 },
+        { icon: <SiExpress size={24} />, name: "Express", color: "text-foreground", level: 88 },
         { icon: <SiSpring size={24} />, name: "Spring Boot", color: "text-[#6DB33F]", level: 85 },
         { icon: <SiLaravel size={24} />, name: "Laravel", color: "text-[#FF2D20]", level: 82 },
       ]
@@ -114,7 +114,7 @@ const Skills = () => {
       icon: <Cpu className="w-5 h-5" />,
       skills: [
         { icon: <SiGit size={24} />, name: "Git", color: "text-[#F05032]", level: 92 },
-        { icon: <SiGithub size={24} />, name: "GitHub", color: "text-white", level: 90 },
+        { icon: <SiGithub size={24} />, name: "GitHub", color: "text-foreground", level: 90 },
         { icon: <SiDocker size={24} />, name: "Docker", color: "text-[#2496ED]", level: 78 },
         { icon: <SiFigma size={24} />, name: "Figma", color: "text-[#F24E1E]", level: 75 },
       ]
@@ -168,7 +168,7 @@ const Skills = () => {
   }
 
   return (
-    <div id="skills" className="relative overflow-hidden bg-gradient-to-b from-slate-950 to-blue-950/30 py-16">
+    <div id="skills" className="relative overflow-hidden bg-background py-16 transition-colors duration-300">
       <div ref={containerRef} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -191,7 +191,7 @@ const Skills = () => {
             className="text-3xl md:text-5xl font-bold mb-4"
             variants={itemVariants}
           >
-            <span className="bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-b from-foreground to-foreground/80 bg-clip-text text-transparent">
               Tech Stack
             </span>
             <motion.span
@@ -204,7 +204,7 @@ const Skills = () => {
           </motion.h2>
 
           <motion.p
-            className="text-slate-300 max-w-xl mx-auto text-base"
+            className="text-muted-foreground max-w-xl mx-auto text-base"
             variants={itemVariants}
           >
             Core tools and technologies I use to build exceptional digital experiences
@@ -225,10 +225,10 @@ const Skills = () => {
               className="space-y-6"
             >
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-500">
                   {category.icon}
                 </div>
-                <h3 className="text-lg font-bold text-white">
+                <h3 className="text-lg font-bold text-foreground">
                   {category.title}
                 </h3>
                 <div className="flex-1 h-px bg-gradient-to-r from-blue-500/20 via-blue-500/10 to-transparent" />
@@ -247,7 +247,7 @@ const Skills = () => {
                     <div className="absolute inset-0 rounded-xl bg-blue-500/10 blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-300" />
 
                     {/* Skill Card - Smaller Size */}
-                    <div className="relative p-3 rounded-xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-sm hover:border-blue-500/30 transition-all duration-300 hover:bg-white/[0.03]">
+                    <div className="relative p-3 rounded-xl bg-secondary/30 border border-border backdrop-blur-sm hover:border-blue-500/30 transition-all duration-300 hover:bg-secondary/50">
                       {/* Icon Container - Smaller */}
                       <motion.div
                         className={`w-10 h-10 rounded-lg ${skill.color} bg-opacity-10 flex items-center justify-center mb-2 mx-auto group-hover:bg-opacity-20 transition-colors duration-300`}
@@ -260,31 +260,31 @@ const Skills = () => {
                       </motion.div>
 
                       {/* Skill Name */}
-                      <h4 className="text-center font-medium text-white text-xs mb-1.5">
+                      <h4 className="text-center font-medium text-foreground text-xs mb-1.5">
                         {skill.name}
                       </h4>
 
                       {/* Skill Level Indicator - Smaller */}
-                      <div className="relative h-1 bg-white/10 rounded-full overflow-hidden">
+                      <div className="relative h-1 bg-foreground/10 rounded-full overflow-hidden">
                         <motion.div
                           className={`h-full rounded-full ${getBgColorFromTextColor(skill.color)} bg-opacity-80`}
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
-                          transition={{ 
-                            duration: 1.2, 
+                          transition={{
+                            duration: 1.2,
                             delay: (categoryIndex * 0.15) + (skillIndex * 0.08),
                             ease: "easeOut"
                           }}
                           viewport={{ once: true }}
                         />
                       </div>
-                      
+
                       {/* Level Percentage - Smaller */}
                       <motion.p
-                        className="text-[11px] text-slate-400 text-center mt-1"
+                        className="text-[11px] text-muted-foreground text-center mt-1"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        transition={{ 
+                        transition={{
                           delay: (categoryIndex * 0.15) + (skillIndex * 0.08) + 0.8,
                           duration: 0.3
                         }}
@@ -309,15 +309,15 @@ const Skills = () => {
           viewport={{ once: true }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 backdrop-blur-sm">
-            <Zap className="w-4 h-4 text-emerald-400" />
-            <span className="text-sm font-medium text-emerald-300">
+            <Zap className="w-4 h-4 text-emerald-600" />
+            <span className="text-sm font-medium text-emerald-600">
               Full-Stack Development
             </span>
           </div>
         </motion.div>
 
-      
-        
+
+
       </div>
 
       {/* Background Elements */}
@@ -383,11 +383,11 @@ const Skills = () => {
         ))}
 
         {/* Grid Pattern */}
-        <div 
-          className="absolute inset-0 opacity-5"
+        <div
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
-                             linear-gradient(0deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(90deg, currentColor 1px, transparent 1px),
+                             linear-gradient(0deg, currentColor 1px, transparent 1px)`,
             backgroundSize: '60px 60px',
           }}
         />

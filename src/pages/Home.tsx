@@ -39,7 +39,7 @@ export default function Home() {
   }
 
   return (
-    <div id="home" className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950/30">
+    <div id="home" className="relative min-h-screen w-full overflow-hidden bg-background">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Orbs */}
@@ -103,11 +103,11 @@ export default function Home() {
         ))}
 
         {/* Grid Pattern */}
-        <div 
-          className="absolute inset-0 opacity-5"
+        <div
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
-                             linear-gradient(0deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(90deg, currentColor 1px, transparent 1px),
+                             linear-gradient(0deg, currentColor 1px, transparent 1px)`,
             backgroundSize: '50px 50px',
           }}
         />
@@ -185,19 +185,19 @@ export default function Home() {
 
             {/* Name */}
             <motion.h1
-  className="text-3xl md:text-5xl font-bold mb-4"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ delay: 0.4 }}
->
-  <span className="bg-gradient-to-b from-white to-blue-200 bg-clip-text text-transparent">
-    Habtamu{" "}
-  </span>
-  <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-    Befekadu
-  </span>
-  
-</motion.h1>
+              className="text-3xl md:text-5xl font-bold mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              <span className="bg-gradient-to-b from-foreground to-foreground/80 bg-clip-text text-transparent">
+                Habtamu{" "}
+              </span>
+              <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                Befekadu
+              </span>
+
+            </motion.h1>
 
 
             {/* Specialization */}
@@ -207,24 +207,24 @@ export default function Home() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.45 }}
             >
-              <h2 className="text-xl font-semibold text-white bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              <h2 className="text-xl font-semibold text-foreground bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
                 MERN & Laravel Specialist
               </h2>
             </motion.div>
 
-           
+
 
             {/* Education */}
             <motion.p
-              className="text-md text-slate-300 mb-4"
+              className="text-md text-muted-foreground mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.55 }}
             >
-              <span className="text-cyan-400 font-semibold">Software Engineering</span> student at Debre Birhan University
+              <span className="text-blue-500 font-semibold">Software Engineering</span> student at Debre Birhan University
             </motion.p>
 
-           
+
 
             {/* Social Links */}
             <motion.div
@@ -261,57 +261,57 @@ export default function Home() {
 
             {/* CTA Buttons - Now with 3 buttons */}
             <motion.div
-  className="flex flex-col sm:flex-row gap-3 w-full max-w-md"
-  initial={{ opacity: 0, y: 10 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.8 }}
->
-  {/* View Projects */}
-  <motion.div
-    className="flex-1"
-    whileHover={{ scale: 1.04 }}
-    whileTap={{ scale: 0.96 }}
-  >
-    <Link to="/projects">
-      <Button className="w-full h-10 text-sm rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 hover:shadow-[0_0_16px_rgba(59,130,246,0.3)] transition-all duration-300 font-semibold">
-        View Projects
-        <ArrowRight className="ml-2 w-4 h-4" />
-      </Button>
-    </Link>
-  </motion.div>
+              className="flex flex-col sm:flex-row gap-3 w-full max-w-md"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+            >
+              {/* View Projects */}
+              <motion.div
+                className="flex-1"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+              >
+                <Link to="/projects">
+                  <Button className="w-full h-10 text-sm rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 hover:shadow-[0_0_16px_rgba(59,130,246,0.3)] transition-all duration-300 font-semibold">
+                    View Projects
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+              </motion.div>
 
-  {/* Contact Me */}
-  <motion.div
-    className="flex-1"
-    whileHover={{ scale: 1.04 }}
-    whileTap={{ scale: 0.96 }}
-  >
-    <Link to="/contact">
-      <Button
-        variant="outline"
-        className="w-full h-10 text-sm rounded-lg border-emerald-500/40 text-emerald-400 hover:border-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 font-semibold"
-      >
-        Contact Me
-      </Button>
-    </Link>
-  </motion.div>
+              {/* Contact Me */}
+              <motion.div
+                className="flex-1"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+              >
+                <Link to="/contact">
+                  <Button
+                    variant="outline"
+                    className="w-full h-10 text-sm rounded-lg border-emerald-500/40 text-emerald-400 hover:border-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 font-semibold"
+                  >
+                    Contact Me
+                  </Button>
+                </Link>
+              </motion.div>
 
-  {/* CV */}
-  <motion.div
-    className="flex-1"
-    whileHover={{ scale: 1.04 }}
-    whileTap={{ scale: 0.96 }}
-  >
-    <Button
-      onClick={handleDownloadCV}
-      variant="ghost"
-      className="w-full h-10 text-sm rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-blue-500/30 transition-all duration-300 font-semibold"
-    >
-      <Download className="mr-2 w-4 h-4" />
-      My CV
-    </Button>
-  </motion.div>
-</motion.div>
+              {/* CV */}
+              <motion.div
+                className="flex-1"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+              >
+                <Button
+                  onClick={handleDownloadCV}
+                  variant="ghost"
+                  className="w-full h-10 text-sm rounded-lg bg-secondary/50 border border-border text-foreground hover:bg-secondary hover:border-blue-500/30 transition-all duration-300 font-semibold"
+                >
+                  <Download className="mr-2 w-4 h-4" />
+                  My CV
+                </Button>
+              </motion.div>
+            </motion.div>
 
           </motion.div>
 
@@ -328,18 +328,18 @@ export default function Home() {
               whileHover={{ borderColor: "rgba(59, 130, 246, 0.3)" }}
               transition={{ duration: 0.3 }}
             >
-              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Code className="w-6 h-6 text-blue-400" />
+              <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <Code className="w-6 h-6 text-blue-500" />
                 About Me
               </h2>
 
-              <p className="text-slate-300 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 Full-stack developer with{" "}
-                <span className="text-blue-400 font-semibold">2+ years</span> of experience in{" "}
-                <span className="text-blue-400 font-semibold">MERN</span> and{" "}
-                <span className="text-red-400 font-semibold">Laravel</span>, building scalable, modern web applications with clean, maintainable code.  
+                <span className="text-blue-500 font-semibold">2+ years</span> of experience in{" "}
+                <span className="text-blue-500 font-semibold">MERN</span> and{" "}
+                <span className="text-red-500 font-semibold">Laravel</span>, building scalable, modern web applications with clean, maintainable code.
                 Software Engineering student at{" "}
-                <span className="text-cyan-300 font-semibold">Debre Birhan University</span>.
+                <span className="text-blue-500 font-semibold">Debre Birhan University</span>.
               </p>
             </motion.div>
 
@@ -366,15 +366,15 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ type: "spring", stiffness: 300, delay: 0.6 + index * 0.1 }}
                 >
-                  <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-xs text-slate-400">{stat.label}</div>
+                  <div className="text-2xl font-bold text-foreground mb-1">{stat.value}</div>
+                  <div className="text-xs text-muted-foreground">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
 
-            
 
-           
+
+
           </motion.div>
         </motion.div>
       </div>
