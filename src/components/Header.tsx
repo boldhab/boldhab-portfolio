@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { motion, useScroll, useSpring } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
-import { Menu, X, Sparkles } from "lucide-react"
+import { Menu, X, Sparkles, Home } from "lucide-react"
 import type { navItems } from "@/types/ui"
 
 const Header = () => {
@@ -28,68 +28,87 @@ const Header = () => {
 
   const navItems: (navItems & { href: string; type: "section" | "route" })[] = useMemo(
     () => [
-      { name: "About", id: "about", href: "/#about", type: "section" },
-      { name: "Skills", id: "skills", href: "/#skills", type: "section" },
-      { name: "Projects", id: "projects", href: "/#projects", type: "section" },
-      { name: "Contact", id: "contact", href: "/contact", type: "route" },
+      { name: "Home", id: "home", href: "/", type: "route", icon: "🏠" },
+      { name: "Skills", id: "skills", href: "/#skills", type: "section", icon: "⚡" },
+      { name: "About", id: "about", href: "/#about", type: "section", icon: "📜" },
+      { name: "Projects", id: "projects", href: "/#projects", type: "section", icon: "🚀" },
+      { name: "Contact", id: "contact", href: "/contact", type: "route", icon: "📞" },
     ],
     []
   )
 
   useEffect(() => {
+    // Set active tab based on current route
     if (location.pathname.toLowerCase() === "/contact") {
       setActiveTab("contact")
       return
     }
-    if (location.pathname.toLowerCase() === "/projects") {
-      setActiveTab("projects")
+    if (location.pathname.toLowerCase() === "/") {
+      // Check hash for sections
+      if (location.hash) {
+        const id = location.hash.replace("#", "")
+        setActiveTab(id)
+      } else {
+        setActiveTab("home")
+      }
       return
     }
-  }, [location.pathname])
+  }, [location.pathname, location.hash])
 
   useEffect(() => {
+    // Handle hash navigation
     if (!location.hash) return
     const id = location.hash.replace("#", "")
     const element = document.getElementById(id)
     if (element) {
       setActiveTab(id)
-      element.scrollIntoView({ behavior: "smooth" })
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: "smooth" })
+      }, 100)
     }
   }, [location.hash])
 
+  // Update active tab on scroll for section pages
   useEffect(() => {
     if (location.pathname !== "/") return
 
-    const sectionIds = navItems.filter((item) => item.type === "section").map((item) => item.id)
+    const sectionIds = navItems
+      .filter((item) => item.type === "section")
+      .map((item) => item.id)
+
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => Boolean(el))
 
     if (!sections.length) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((entry) => entry.isIntersecting)
-        if (!visible.length) return
-        visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
-        const id = visible[0].target.id
-        setActiveTab(id)
-      },
-      { rootMargin: "-30% 0px -60% 0px", threshold: [0.1, 0.3, 0.6] }
-    )
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 120
+      let currentSection = "home"
 
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
+      sections.forEach((section) => {
+        if (section.offsetTop <= scrollPosition) {
+          currentSection = section.id
+        }
+      })
+
+      setActiveTab(currentSection)
+    }
+
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [location.pathname, navItems])
 
   const handleClick = (id: string, type: "section" | "route" = "route") => {
     setActiveTab(id)
     setIsMobileMenuOpen(false)
 
-    if (type !== "section" || location.pathname !== "/") return
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+    if (type === "section" && location.pathname === "/") {
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
     }
   }
 
@@ -126,14 +145,11 @@ const Header = () => {
         >
           <Link 
             to="/" 
-            className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
+            className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent flex items-center gap-2"
             onClick={() => handleClick("home")}
           >
-            <span className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-blue-400" />
-              HB
-              
-            </span>
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            HB
           </Link>
         </motion.div>
 
@@ -152,10 +168,11 @@ const Header = () => {
                   onClick={() => handleClick(item.id, item.type)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
                     activeTab === item.id
-                      ? "text-white bg-blue-500/10 border border-blue-500/20"
-                      : "text-slate-300 hover:text-white hover:bg-white/5"
+                      ? "text-blue-400"
+                      : "text-slate-300 hover:text-white"
                   }`}
                 >
+                  {item.id === "home" && <Home className="w-4 h-4" />}
                   <span className="text-sm font-medium">{item.name}</span>
                 </Link>
                 {activeTab === item.id && (
@@ -215,10 +232,11 @@ const Header = () => {
                       onClick={() => handleClick(item.id, item.type)}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                         activeTab === item.id
-                          ? "text-white bg-blue-500/20 border border-blue-500/30"
-                          : "text-slate-300 hover:text-white hover:bg-white/10"
+                          ? "text-blue-400"
+                          : "text-slate-300 hover:text-white"
                       }`}
                     >
+                      {item.id === "home" && <Home className="w-5 h-5" />}
                       <span className="text-base font-medium">{item.name}</span>
                     </Link>
                   </motion.li>

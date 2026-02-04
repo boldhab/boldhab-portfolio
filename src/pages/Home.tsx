@@ -42,7 +42,7 @@ export default function Home() {
   }
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950/30">
+    <div id="home" className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950/30">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Orbs */}
