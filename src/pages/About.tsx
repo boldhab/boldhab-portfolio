@@ -23,7 +23,6 @@ export function JourneySection() {
   const isInView = useInView(containerRef, { once: true, amount: 0.3 })
 
   // Parallax effects
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.5])
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.02, 1])
 
   const milestones: JourneyMilestone[] = [

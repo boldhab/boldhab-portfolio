@@ -196,25 +196,30 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const sendEmail = (e: FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    emailjs
-      .sendForm(
-        "service_8oby0sa", "template_jrk5rq9",
-        e.target as HTMLFormElement, "Ddw-YUU_qHVSVYCjv"
-      )
-      .then(
-        () => {
-          setIsSubmitted(true)
-          setIsLoading(false)
-          setFormData({ name: "", email: "", subject: "", message: "" })
-        },
-        () => {
-          setIsLoading(false)
-        }
-      )
-  }
+  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault()
+  setIsLoading(true)
+
+  emailjs
+    .sendForm(
+      "service_hj82dcp",       // Your Gmail service ID
+      "template_2da03xp",      // Your template ID
+      e.currentTarget,          // The form element
+      "aqvltvwaYFkc7IlVS"      // Your public key
+    )
+    .then(
+      () => {
+        setIsSubmitted(true)
+        setIsLoading(false)
+        setFormData({ name: "", email: "", subject: "", message: "" })
+      },
+      (error) => {
+        console.error("EmailJS error:", error)
+        setIsLoading(false)
+      }
+    )
+}
+
 
   useEffect(() => {
     nameRef.current?.focus()
@@ -420,7 +425,7 @@ const Contact = () => {
                             className="h-12 rounded-xl bg-secondary/50 border-border text-foreground placeholder:text-muted-foreground focus:bg-secondary focus:border-blue-500 transition-all"
                             id="name"
                             name="name"
-                            placeholder="John Smith"
+                            placeholder="your name"
                             value={formData.name}
                             onChange={handleChange}
                             required
@@ -433,7 +438,7 @@ const Contact = () => {
                             id="email"
                             name="email"
                             type="email"
-                            placeholder="john@example.com"
+                            placeholder="example@gmail.com"
                             value={formData.email}
                             onChange={handleChange}
                             required

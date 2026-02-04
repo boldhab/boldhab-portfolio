@@ -5,6 +5,7 @@ import "./index.css"
 import App from "./App.tsx"
 import Contact from "./pages/Contact.tsx"
 import { MainProjects } from "./pages/MainProjects.tsx"
+import { ThemeProvider } from "./components/ThemeProvider"
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -19,5 +20,7 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById("root")!).render(
-  <RouterProvider router={router} />
+  <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
+    <RouterProvider router={router} />
+  </ThemeProvider>
 )
