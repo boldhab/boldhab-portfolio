@@ -7,230 +7,336 @@ import { useEffect, useState } from "react"
 import { Footer } from "./Footer"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/blur.css"
-
 // Import your images
-import taxImg from "../assets/ta.png"
-import ecommerceImg from "../assets/ecommerce.png"
-import emailImg from "../assets/email.png"
-import tourImg from "../assets/tour.png"
-import todoImg from "../assets/todo.png"
-import lmsImg from "../assets/lms.png"
-import realImg from "../assets/real.png"
-import negariImg from "../assets/negari.png"
+import realEstateImg from "../assets/real-estate.png"  
+import ethioCareerImg from "../assets/ethio-career.png"
+import dashboardImg from "../assets/dashboard.png"
+import hotelImg from "../assets/hotel.png"
+import coffeeShopImg from "../assets/coffee-shop.png"
+import shoesEcomImg from "../assets/shoes-ecom.png"
+import taskManagerImg from "../assets/task-manager.png"
+import habCommerceImg from "../assets/hab-commerce.png"
+import gamesImg from "../assets/games.png"
+
+
 
 const projects: Project[] = [
   {
-    id: 1,
-    title: "Negari - Community Issue Reporting",
-    description:
-      "A mobile and web platform for citizens to report urban issues, track resolutions, and communicate with local authorities.",
-    technologies: [
-      "React Native",
-      "Next.js",
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-      "Leaflet",
-      "Socket.io",
-    ],
-    features: [
-      "Region-based report assignment to officials",
-      "Priority-based issue routing",
-      "Real-time notifications and messaging between users and officials",
-      "Interactive map view of reported issues",
-      "Admin dashboard for managing users, reports, and system settings",
-    ],
-    challenges:
-      "Handling real-time updates, secure voice transcription, and prioritization of reports in a scalable system",
-    solutions:
-      "Integrated Socket.io for real-time communication, used OpenAI Whisper for voice-to-text, implemented custom ML models for spam and priority detection, and optimized MongoDB queries for fast data retrieval",
-    results:
-      "Reduced issue response time by 35% and improved citizen engagement by providing transparent tracking and notifications",
-    githubUrl: "https://github.com/sami855-ux/Negari.git",
-    liveUrl: "https://negari-ten.vercel.app/",
-    imageUrl: negariImg,
-  },
+  id: 1,
+  title: "Ethio-Career (Job Portal) 💼",
+  description:
+    "A modern, full-stack job portal application built with Spring Boot (backend) and React (frontend), enabling job seekers, employers, and admins to manage profiles, applications, and postings, with AI-powered features for enhanced user experience.",
+  technologies: [
+    "Spring Boot",
+    "Spring Security",
+    "Spring Data JPA",
+    "Hibernate",
+    "MySQL",
+    "Java 17",
+    "React",
+    "React Router",
+    "Tailwind CSS",
+    "Axios",
+    "React Hot Toast",
+    "Heroicons",
+    "Vite",
+    "Google Gemini API"
+  ],
+  features: [
+    "Job Seekers: Profile management, CV uploads, job search with filters, AI match scoring, AI profile analyzer",
+    "Employers: Post and manage jobs, review applicants, communicate with candidates, AI job description generator",
+    "Admins: Approve employers, moderate job postings, view platform analytics, manage users",
+    "AI Features: Chatbot assistant, profile analyzer, match score, AI-generated job descriptions",
+    "Frontend built with React and Tailwind CSS for a responsive, clean UI",
+    "Backend with Spring Boot, Spring Security, and MySQL for secure and scalable data management",
+    "Role-based dashboards and protected routes",
+    "Real-time notifications and interactive UI elements"
+  ],
+  challenges:
+    "Integrating full-stack features including role-based access, AI-powered assistance, real-time feedback, and a secure, scalable backend",
+  solutions:
+    "Implemented Spring Boot with JWT authentication for backend, React frontend with modular components, Axios for API requests, and Google Gemini API for AI-powered features",
+  results:
+    "Delivered a comprehensive job portal with enhanced AI features, secure role-based access, responsive design, and improved user engagement for job seekers and employers",
+  githubUrl: "https://github.com/your-username/ethio-career",
+  liveUrl: "#",
+  imageUrl: ethioCareerImg,
+}
+,
 
   {
-    id: 2,
-    title: "Learning Management System",
-    description:
-      "A full-featured LMS platform for managing online courses, quizzes, certifications, and student progress.",
-    technologies: ["React", "Node.js", "MongoDB", "Redux Toolkit"],
-    features: [
-      "Course creation and enrollment",
-      "Interactive quizzes and assessments",
-      "Progress tracking and certification",
-      "Admin dashboard for managing users and content",
-    ],
-    challenges:
-      "Ensuring real-time progress tracking and scalability for large numbers of users",
-    solutions:
-      "Used Redux Toolkit for efficient state management and optimized backend queries with MongoDB indexing",
-    results:
-      "Improved course completion rate by 42% and reduced admin overhead by automating content management",
-    githubUrl: "#",
-    liveUrl: "#",
-    imageUrl: lmsImg,
-  },
+  id: 2,
+  title: "Social Media Analytics Dashboard",
+  description:
+    "A modern, responsive social media analytics dashboard that provides real-time insights into performance, audience metrics, and campaign analytics through an intuitive UI.",
+  technologies: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Chart.js",
+    "Radix UI",
+    "Zustand"
+  ],
+  features: [
+    "Modular dashboard sections with reusable UI components",
+    "Responsive layout with collapsible sidebar navigation",
+    "Theme switching with light and dark mode using next-themes",
+    "Interactive charts and analytics powered by Chart.js",
+    "Configurable sections for posts, campaigns, customers, and settings"
+  ],
+  challenges:
+    "Designing a scalable and responsive dashboard architecture while maintaining performance and consistent UI across devices",
+  solutions:
+    "Adopted a modular component-based architecture with the Next.js App Router, leveraged Tailwind CSS for responsive design, and used Zustand for scalable state management",
+  results:
+    "Delivered a highly performant and user-friendly dashboard with clean UI, fast load times, and flexible configuration for future feature expansion",
+  githubUrl: "https://github.com/your-username/social-media-dashboard",
+  liveUrl: "#",
+  imageUrl: dashboardImg,
+}
+,
 
   {
-    id: 4,
-    title: "Tax Payment Web App",
-    description:
-      "A secure and user-friendly platform for managing tax filings, payments, and compliance for individuals and businesses.",
-    technologies: ["React", "Node.js", "MongoDB", "Framer Motion"],
-    features: [
-      "Taxpayer dashboard with due dates and payment history",
-      "Official panel for reviewing and approving filings",
-      "Dynamic tax rule configuration",
-      "Automated reminders and notifications",
-    ],
-    challenges:
-      "Handling complex tax rules while maintaining a simple user interface",
-    solutions:
-      "Implemented a flexible tax rule engine and used animations to guide user interactions step-by-step",
-    results:
-      "Increased on-time payments by 55% and reduced manual errors in filings by 70%",
-    githubUrl: "https://github.com/sami855-ux/Tax-payment-Website.git",
-    liveUrl: "#",
-    imageUrl: taxImg,
-  },
+  id: 3,
+  title: "Hotel Management Frontend",
+  description:
+    "A modern and responsive frontend application for a Hotel Management System that allows guests to browse rooms, explore amenities, read testimonials, and book their stay through an intuitive interface.",
+  technologies: [
+    "React",
+    "Vite",
+    "React Router",
+    "i18next",
+    "Tailwind CSS",
+    "FontAwesome",
+    "ESLint"
+  ],
+  features: [
+    "Welcoming home page with hero section and quick navigation links",
+    "Detailed room browsing with individual room cards and views",
+    "Interactive booking system with reservation form",
+    "Amenities and experiences showcase pages",
+    "Special offers and promotions section",
+    "Guest testimonials and reviews",
+    "Contact page with inquiry form",
+    "Multi-language support using i18next",
+    "Fully responsive design for all screen sizes"
+  ],
+  challenges:
+    "Managing application-wide state and translations while maintaining a clean and scalable component structure",
+  solutions:
+    "Implemented React Router for structured navigation, modular reusable components, and i18next for seamless internationalization across the application",
+  results:
+    "Delivered a user-friendly, multilingual hotel booking interface with smooth navigation, responsive design, and improved user engagement",
+  githubUrl: "https://github.com/your-username/hotel-management-frontend",
+  liveUrl: "#",
+  imageUrl: hotelImg,
+}
+,
+
+ {
+  id: 4,
+  title: "Real Estate Landing Page",
+  description:
+    "A modern, fully responsive real estate landing page designed to showcase properties, agents, testimonials, and contact information with smooth animations and a premium user experience.",
+  technologies: [
+    "React",
+    "Vite",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Font Awesome",
+    "JavaScript Modules"
+  ],
+  features: [
+    "Modern hero section with engaging call-to-action",
+    "Featured property listings with dynamic data rendering",
+    "Why Choose Us section highlighting key value propositions",
+    "Agents team showcase with profile cards",
+    "Client testimonials powered by structured data files",
+    "Contact form for customer inquiries",
+    "Smooth animations and transitions using Framer Motion",
+    "Fully responsive layout optimized for all devices",
+    "Clean, component-based single-page architecture"
+  ],
+  challenges:
+    "Creating a visually rich landing page while maintaining performance and clean component separation",
+  solutions:
+    "Used a modular React component structure, Tailwind CSS for rapid responsive styling, and Framer Motion to add smooth, non-intrusive animations",
+  results:
+    "Delivered a fast, visually appealing real estate landing page that improves user engagement and presents property information clearly across all screen sizes",
+  githubUrl: "https://github.com/boldhab/Real-esate.git",
+  liveUrl: "#",
+  imageUrl: realEstateImg,
+}
+,
 
   {
-    id: 3,
-    title: "E-Commerce Platform",
-    description:
-      "A full-featured online store with payment processing and inventory management.",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-    features: [
-      "Product catalog with filters",
-      "User authentication system",
-      "Shopping cart functionality",
-      "Admin dashboard",
-    ],
-    challenges:
-      "Implementing real-time inventory updates during high traffic periods",
-    solutions: "Used Redis for caching and WebSockets for live updates",
-    results:
-      "Reduced checkout time by 40% and increased conversion rate by 25%",
-    githubUrl: "https://github.com/sami855-ux/E-commerce-Website.git",
-    liveUrl: "#",
-    imageUrl: ecommerceImg,
-  },
+  id: 5,
+  title: "Collection of Games",
+  description:
+    "A lightweight React and Vite-based arcade featuring multiple classic mini-games with a shared scoreboard that persists player scores using browser localStorage.",
+  technologies: [
+    "React",
+    "Vite",
+    "JavaScript",
+    "ESLint",
+    "CSS"
+  ],
+  features: [
+    "Multiple classic mini-games including Memory Match, Snake, Minesweeper, Dino Jump, Breakout, Rock Paper Scissors, and 2048",
+    "Single-page navigation between games",
+    "Persistent scoreboard with best scores saved in localStorage",
+    "Dedicated scoreboard page to view and clear stored results",
+    "Responsive and lightweight UI optimized for performance",
+    "Shared UI components across all games"
+  ],
+  challenges:
+    "Managing state consistency and score persistence across multiple independent games within a single application",
+  solutions:
+    "Implemented a centralized scoring utility using browser localStorage and reusable components to standardize score tracking across games",
+  results:
+    "Delivered a fun, performant arcade experience with reliable score persistence and seamless navigation between games",
+  githubUrl: "https://github.com/your-username/collection-of-games",
+  liveUrl: "#",
+  imageUrl: gamesImg,
+}
+,
+ {
+  id: 6,
+  title: "Hab Commerce 🛍️",
+  description:
+    "A modern, premium, and fully responsive e-commerce platform built with vanilla web technologies, offering a sleek shopping experience with performance, aesthetics, and user-friendly interactions.",
+  technologies: [
+    "HTML5",
+    "CSS3",
+    "JavaScript (ES6+)",
+    "LocalStorage"
+  ],
+  features: [
+    "Dynamic product catalog with multiple categories and lazy-loaded images",
+    "Advanced real-time search with category filtering and price sorting",
+    "Persistent shopping cart stored across sessions using LocalStorage",
+    "Native light and dark theme support with automatic persistence",
+    "Authentication system with login, sign-up, and personal profile views",
+    "Simulated multi-method checkout supporting Credit Cards, Cryptocurrency, and PayPal",
+    "Ultra-responsive mobile-first design for all devices",
+    "Optimized for performance with zero external dependencies and minimal bundle size"
+  ],
+  challenges:
+    "Implementing a fully functional, feature-rich e-commerce experience without frameworks while maintaining performance and responsiveness",
+  solutions:
+    "Used modular JavaScript for state management, LocalStorage for persistence, and CSS Grid/Flexbox for responsive layout and theme support",
+  results:
+    "Delivered a fast, visually appealing, fully functional e-commerce platform with persistent cart, smooth interactions, and responsive design across all devices",
+  githubUrl: "https://github.com/your-username/e-commerce",
+  liveUrl: "#",
+  imageUrl: habCommerceImg,
+}
+,
+ {
+  id: 7,
+  title: "Shoes E-commerce 👟",
+  description:
+    "A modern, responsive frontend application for a premium footwear shopping experience, featuring clean UI, smooth navigation, and a dynamic storefront built with React and Vite.",
+  technologies: [
+    "React",
+    "Vite",
+    "React Router",
+    "Vanilla CSS",
+    "ESLint"
+  ],
+  features: [
+    "Dynamic landing page showcasing premium footwear collections",
+    "Interactive menu for browsing collections and categories",
+    "Integrated store location view for physical outlets",
+    "About Us section highlighting the brand story and mission",
+    "Dedicated contact interface for customer inquiries",
+    "Responsive design optimized for seamless viewing across all devices",
+    "Clean modular component structure for maintainable code"
+  ],
+  challenges:
+    "Designing a feature-rich, visually appealing e-commerce frontend while keeping navigation smooth and code modular",
+  solutions:
+    "Implemented modular React components, React Router for page navigation, and responsive CSS to ensure consistent UI across all screen sizes",
+  results:
+    "Delivered a polished, fully responsive footwear storefront with intuitive navigation, clear presentation of products, and a seamless user experience",
+  githubUrl: "https://github.com/your-username/shoes-ecommerce",
+  liveUrl: "#",
+  imageUrl: shoesEcomImg,
+}
+,
+ {
+  id: 8,
+  title: "Task Manager 🗂️",
+  description:
+    "A modern, lightweight frontend application for managing projects and tasks, featuring a clean dashboard, intuitive modals, drag-and-drop task ordering, and helpful notifications.",
+  technologies: [
+    "React",
+    "Vite",
+    "JavaScript",
+    "CSS",
+    "@hello-pangea/dnd",
+    "framer-motion",
+    "react-hot-toast",
+    "react-router-dom",
+    "lucide-react",
+    "Font Awesome",
+    "react-icons",
+    "ESLint"
+  ],
+  features: [
+    "Project lists and task lists with modal-based create/edit forms",
+    "Drag-and-drop task reordering using @hello-pangea/dnd",
+    "Animated UI interactions with framer-motion",
+    "Toast notifications for success and error feedback",
+    "Routing using react-router-dom for multi-page navigation",
+    "Icon integration via lucide-react, Font Awesome, and react-icons",
+    "Responsive and lightweight frontend design",
+    "Modular component structure for maintainable code"
+  ],
+  challenges:
+    "Providing a smooth drag-and-drop experience, responsive UI, and real-time feedback while keeping code modular and maintainable",
+  solutions:
+    "Used @hello-pangea/dnd for drag-and-drop, framer-motion for animations, react-hot-toast for notifications, and a clean component architecture with Vite and React Router",
+  results:
+    "Delivered a highly interactive task management frontend with intuitive modals, drag-and-drop functionality, and responsive notifications across all devices",
+  githubUrl: "https://github.com/your-username/task-manager",
+  liveUrl: "https://task-managment-one-psi.vercel.app",
+  imageUrl: taskManagerImg,
+}
+,
 
-  {
-    id: 3,
-    title: "Tour Mobile App",
-    description:
-      "A comprehensive mobile application for booking and managing guided tours with real-time location tracking.",
-    technologies: ["Java", "Firebase", "Google Maps API", "SQLite"],
-    features: [
-      "Tour package browsing with filters",
-      "User authentication system",
-      "In-app tour booking and itinerary",
-      "Admin dashboard for managing tours",
-    ],
-    challenges:
-      "Implementing real-time location tracking while maintaining battery efficiency",
-    solutions:
-      "Used Google Maps API with optimized location services and Firebase for real-time data sync",
-    results:
-      "Improved user engagement by 45% and reduced booking process time by 60%",
-    githubUrl: "https://github.com/sami855-ux/Tour-Mobile-App-Main.git",
-    liveUrl: "#",
-    imageUrl: tourImg,
-  },
-  {
-    id: 6,
-    title: "Real Time Chat App",
-    description:
-      "A modern real-time chat application that allows users to send and receive messages instantly, with typing indicators, read receipts, and online status updates.",
-    technologies: ["React", "Node.js", "MongoDB", "Socket.io", "Express"],
-    features: [
-      "Real-time messaging with Socket.io",
-      "User authentication and profile management",
-      "Online status and typing indicators",
-      "Chat history and message persistence",
-      "Responsive UI with dark mode",
-    ],
-    challenges:
-      "Handling real-time message delivery, presence tracking, and scaling Socket connections without latency under heavy load.",
-    solutions:
-      "Utilized Socket.io with rooms for efficient message broadcasting, implemented Redis for scalable pub/sub, and set up horizontal scaling with sticky sessions.",
-    results:
-      "Achieved sub-second message delivery latency and supported over 10,000 concurrent users with smooth real-time interactions.",
-    githubUrl: "https://github.com/yourusername/realtime-chat-app",
-    liveUrl: "https://realtime-chat-app.vercel.app",
-    imageUrl: realImg,
-  },
-  {
-    id: 4,
-    title: "Animated To-Do Website",
-    description:
-      "A beautifully animated task management website that helps users organize and track daily tasks with smooth interactions.",
-    technologies: ["React", "Framer Motion", "Tailwind CSS", "LocalStorage"],
-    features: [
-      "Add, edit, and delete tasks",
-      "Drag-and-drop task reordering",
-      "Light/dark theme toggle",
-      "Smooth animations for all task interactions",
-    ],
-    challenges:
-      "Creating fluid animations while maintaining high performance on all devices",
-    solutions:
-      "Used Framer Motion with layout transitions and optimized re-renders for animation-heavy UI",
-    results:
-      "Enhanced user experience with 70% longer session duration and increased daily active users",
-    githubUrl: "https://github.com/sami855-ux/animated-todo-app.git",
-    liveUrl: "#",
-    imageUrl: todoImg,
-  },
-  {
-    id: 2,
-    title: "Email Spam Detector",
-    description:
-      "An intelligent email filtering tool that classifies incoming messages as spam or legitimate using machine learning.",
-    technologies: ["React", "Node.js", "MongoDB", "TensorFlow.js"],
-    features: [
-      "Real-time spam detection using trained ML models",
-      "Interactive dashboard to review flagged emails",
-      "User feedback system to improve model accuracy",
-      "Role-based access control for users and admins",
-    ],
-    challenges:
-      "Training an accurate model with a high precision rate and integrating it seamlessly into the email pipeline",
-    solutions:
-      "Used TensorFlow.js to deploy a lightweight spam classifier in the browser and created a feedback loop to retrain with user input",
-    results:
-      "Achieved over 96% accuracy in spam classification and reduced false positives by 30%",
-    githubUrl: "https://github.com/sami855-ux/Email-spam-classfication.git",
-    liveUrl: "#",
-    imageUrl: emailImg,
-  },
-  {
-    id: 5,
-    title: "Shopping Website Landing Page",
-    description:
-      "A modern, animated landing page for an online shopping platform, designed to attract users and promote featured products.",
-    technologies: ["React", "Tailwind CSS", "Framer Motion"],
-    features: [
-      "Hero section with promotional banners",
-      "Animated product highlights",
-      "Responsive design for mobile and desktop",
-      "Newsletter subscription and call-to-action sections",
-    ],
-    challenges:
-      "Creating smooth animations without sacrificing load speed or SEO performance",
-    solutions:
-      "Implemented Framer Motion for lightweight animations and optimized images using lazy loading",
-    results:
-      "Increased user engagement by 48% and improved sign-up conversions by 30%",
-    githubUrl: "https://github.com/sami855-ux/Shopping-cart-website.git",
-    liveUrl: "#",
-    imageUrl:
-      "https://images.unsplash.com/photo-1607083200843-eac15f4b7de0?auto=format&fit=crop&w=1350&q=80",
-  },
+    {
+  id: 9,
+  title: "Coffee Shop Website ☕",
+  description:
+    "A modern, responsive Coffee Shop website designed to showcase products, menu, customer testimonials, gallery, and contact information, with a clean and user-friendly interface.",
+  technologies: [
+    "HTML5",
+    "CSS3",
+    "JavaScript"
+  ],
+  features: [
+    "Responsive navigation bar with logo, menu links, and mobile toggle buttons",
+    "Hero section highlighting main coffee offerings with call-to-action buttons",
+    "About section detailing the coffee shop story",
+    "Menu section with categories such as Hot Beverages, Cold Beverages, Desserts, Special Combos, Burgers & French Fries, and Refreshments",
+    "Testimonials carousel with customer feedback",
+    "Gallery section displaying coffee and cafe ambiance images",
+    "Contact section with details, opening hours, and inquiry form",
+    "Footer with copyright and policy links"
+  ],
+  challenges:
+    "Creating a visually appealing and fully responsive design while keeping interactions lightweight and intuitive",
+  solutions:
+    "Used semantic HTML5, CSS3 for responsive layout and styling, and JavaScript for interactive elements like menu toggling and testimonial slider",
+  results:
+    "Delivered a clean, interactive, and mobile-friendly Coffee Shop website that effectively showcases products and engages visitors",
+  githubUrl: "https://github.com/your-username/coffee-shop-website",
+  liveUrl: "https://coffee-restorant-hab.vercel.app",
+  imageUrl: coffeeShopImg,
+}
+
 ]
 
 export function MainProjects() {

@@ -18,46 +18,68 @@ import {
 } from "@/components/ui/tooltip"
 import { useRef } from "react"
 import { Link } from "react-router-dom"
-import taxImg from "../assets/ta.png"
-import itImg from "../assets/it.png"
-import lmsImg from "../assets/lms.png"
+import ethioCareerImg from "../assets/ethio-career.png"
+import socialDashboardImg from "../assets/dashboard.png"
+import hotelManagementImg from "../assets/hotel.png"
+
 
 const projects = [
   {
-    title: "Learning Management System",
-    description:
-      "Online learning platform with user authentication and course management.",
-    tags: [
-      "React",
-      "Prisma",
-      "TypeScript",
-      "Tailwind",
-      "Redux",
-      "Socket.io",
-      "Shadcn",
-    ],
-    github: "#",
-    live: "#",
-    image: lmsImg,
-  },
+  title: "Ethio-Career (Job Portal Application)",
+  description:
+    "A full-stack job portal platform enabling Job Seekers, Employers, and Admins to manage recruitment workflows. Features include CV management, job posting, application tracking, role-based dashboards, and AI-powered tools using Google Gemini for job matching, profile analysis, and job description generation.",
+  tags: [
+    "Spring Boot",
+    "React",
+    "Java",
+    "MySQL",
+    "JWT",
+    "Tailwind CSS",
+    "Google Gemini AI",
+    "REST API",
+  ],
+  github: "#",
+  live: "#",
+  image: ethioCareerImg,
+}
+,
   {
-    title: "Tax Payment Web App",
-    description:
-      "Online tax payment platform with user authentication and payment gateway integration.",
-    tags: ["Next.js", "Node.js", "MongoDB", "Cloudinary", "Stripe"],
-    github: "https://github.com/sami855-ux/Tax-payment-Website.git",
-    live: "https://tax-payment-website.vercel.app/",
-    image: taxImg,
-  },
+  title: "Social Media Analytics Dashboard",
+  description:
+    "A modern, responsive social media analytics dashboard built with Next.js and Tailwind CSS. It features overview cards, interactive charts, audience insights, and modular sections for posts, campaigns, customers, and settings, with theme support and scalable state management.",
+  tags: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Radix UI",
+    "Chart.js",
+    "Zustand",
+    "Next-Themes",
+  ],
+  github: "#",
+  live: "#",
+  image: socialDashboardImg,
+}
+,
   {
-    title: "Jobs Marketplace",
-    description:
-      "Online job marketplace with user authentication and job posting features. Inspired by LinkedIn and instagram.",
-    tags: ["React", "Node.js", "MongoDB", "Socket.io", "Express", "Tailwind"],
-    github: "https://github.com/sami855-ux/Itgram-social-network.git",
-    live: "https://itgram-social-network-w6pm.vercel.app/",
-    image: itImg,
-  },
+  title: "Hotel Management Frontend",
+  description:
+    "A modern, responsive frontend application for a Hotel Management System built with React and Vite. It allows guests to browse rooms, view amenities and experiences, read testimonials, explore special offers, and book rooms through an interactive, multi-language booking interface.",
+  tags: [
+    "React",
+    "Vite",
+    "React Router",
+    "Tailwind CSS",
+    "i18next",
+    "Responsive Design",
+    "ESLint",
+  ],
+  github: "#",
+  live: "#",
+  image: hotelManagementImg,
+}
+,
 ]
 
 const Projects = () => {
