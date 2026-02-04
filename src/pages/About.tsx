@@ -34,7 +34,7 @@ export function JourneySection() {
       icon: <GraduationCap className="w-6 h-6" />,
       color: "from-blue-500 to-cyan-400",
       skills: ["Algorithms", "Data Structures", "OOP", "Software Design"],
-      year: "2022 - Present"
+      year: "2024 - Present"
     },
     {
       id: 2,
@@ -43,7 +43,7 @@ export function JourneySection() {
       icon: <Code className="w-6 h-6" />,
       color: "from-purple-500 to-pink-400",
       skills: ["React/Next.js", "Node.js", "TypeScript", "PostgreSQL"],
-      year: "2023 - Present"
+      year: "2024 - Present"
     },
     {
       id: 3,
@@ -52,7 +52,7 @@ export function JourneySection() {
       icon: <Briefcase className="w-6 h-6" />,
       color: "from-emerald-500 to-green-400",
       skills: ["Project Management", "Client Communication", "Deployment", "Maintenance"],
-      year: "2023 - Present"
+      year: "2025- Present"
     },
     {
       id: 4,
@@ -61,7 +61,7 @@ export function JourneySection() {
       icon: <Layers className="w-6 h-6" />,
       color: "from-orange-500 to-amber-400",
       skills: ["API Design", "Database Design", "UI/UX", "Performance"],
-      year: "2024 - Present"
+      year: "2025 - Present"
     },
     {
       id: 5,
