@@ -96,7 +96,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            with 3+ years of experience.
+            with 2+ years of experience.
           </motion.p>
 
           <motion.p
@@ -242,20 +242,16 @@ export default function Home() {
         </motion.div>
       </div>
       <PersonalCardHeader
-        name="samitale86@gmail.com"
-        title="+251 978109304"
+        name="habtamubefekadu19@gmail.com"
+        title="Email Me"
         position="top-2/3 -right-5"
       />
       <PersonalCardHeader
-        name="Big Tech lover"
+        name="Full-Stack Developer | MERN & Laravel"
         title="Programmer"
         position="top-1/6 -right-5"
       />
-      <PersonalCardHeader
-        name="Samuel 'The Bug Whisperer' Tale"
-        title="Chief Coffee Consumer"
-        position="top-[25%] left-[20%]"
-      />
+      
     </>
   )
 }
