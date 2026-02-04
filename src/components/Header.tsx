@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { motion, useScroll, useSpring } from "framer-motion"
 import { Link, useLocation } from "react-router-dom"
 import { Menu, X, Sparkles } from "lucide-react"
@@ -26,30 +26,70 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Update active tab based on current route
+  const navItems: (navItems & { href: string; type: "section" | "route" })[] = useMemo(
+    () => [
+      { name: "About", id: "about", href: "/#about", type: "section" },
+      { name: "Skills", id: "skills", href: "/#skills", type: "section" },
+      { name: "Projects", id: "projects", href: "/#projects", type: "section" },
+      { name: "Contact", id: "contact", href: "/contact", type: "route" },
+    ],
+    []
+  )
+
   useEffect(() => {
-    const path = location.pathname.substring(1) || "home"
-    setActiveTab(path)
-  }, [location])
+    if (location.pathname.toLowerCase() === "/contact") {
+      setActiveTab("contact")
+      return
+    }
+    if (location.pathname.toLowerCase() === "/projects") {
+      setActiveTab("projects")
+      return
+    }
+  }, [location.pathname])
 
-  const navItems: navItems[] = [
-    { name: "Home", id: "home", icon: "🏠" },
-    { name: "Skills", id: "skills", icon: "⚡" },
-    { name: "Journey", id: "about", icon: "📜" },
-    { name: "Projects", id: "projects", icon: "🚀" },
-    { name: "Contact", id: "contact", icon: "📞" },
-  ]
+  useEffect(() => {
+    if (!location.hash) return
+    const id = location.hash.replace("#", "")
+    const element = document.getElementById(id)
+    if (element) {
+      setActiveTab(id)
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [location.hash])
 
-  const handleClick = (id: string) => {
+  useEffect(() => {
+    if (location.pathname !== "/") return
+
+    const sectionIds = navItems.filter((item) => item.type === "section").map((item) => item.id)
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el))
+
+    if (!sections.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting)
+        if (!visible.length) return
+        visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+        const id = visible[0].target.id
+        setActiveTab(id)
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: [0.1, 0.3, 0.6] }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [location.pathname, navItems])
+
+  const handleClick = (id: string, type: "section" | "route" = "route") => {
     setActiveTab(id)
     setIsMobileMenuOpen(false)
-    
-    // If we're already on the page, scroll to section
-    if (location.pathname === `/${id}` || (id === "home" && location.pathname === "/")) {
-      const element = document.getElementById(id)
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
-      }
+
+    if (type !== "section" || location.pathname !== "/") return
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
     }
   }
 
@@ -92,7 +132,7 @@ const Header = () => {
             <span className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-blue-400" />
               HB
-              <span className="hidden sm:inline text-sm font-normal text-slate-400 ml-2">Dev</span>
+              
             </span>
           </Link>
         </motion.div>
@@ -108,29 +148,22 @@ const Header = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
-                  to={item.id === "home" ? "/" : `/${item.id}`}
-                  onClick={() => handleClick(item.id)}
+                  to={item.href}
+                  onClick={() => handleClick(item.id, item.type)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
                     activeTab === item.id
                       ? "text-white bg-blue-500/10 border border-blue-500/20"
                       : "text-slate-300 hover:text-white hover:bg-white/5"
                   }`}
                 >
-                  <span className="text-sm">{item.icon}</span>
                   <span className="text-sm font-medium">{item.name}</span>
                 </Link>
-
-                {/* Active indicator */}
                 {activeTab === item.id && (
                   <motion.div
                     layoutId="activeIndicator"
                     className="absolute bottom-0 left-1/2 w-1/2 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full -translate-x-1/2"
                     initial={false}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 300, 
-                      damping: 25 
-                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   />
                 )}
               </motion.li>
@@ -178,15 +211,14 @@ const Header = () => {
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link
-                      to={item.id === "home" ? "/" : `/${item.id}`}
-                      onClick={() => handleClick(item.id)}
+                      to={item.href}
+                      onClick={() => handleClick(item.id, item.type)}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                         activeTab === item.id
                           ? "text-white bg-blue-500/20 border border-blue-500/30"
                           : "text-slate-300 hover:text-white hover:bg-white/10"
                       }`}
                     >
-                      <span className="text-lg">{item.icon}</span>
                       <span className="text-base font-medium">{item.name}</span>
                     </Link>
                   </motion.li>

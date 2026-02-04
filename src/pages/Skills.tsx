@@ -168,7 +168,7 @@ const Skills = () => {
   }
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-b from-slate-950 to-blue-950/30 py-16">
+    <div id="skills" className="relative overflow-hidden bg-gradient-to-b from-slate-950 to-blue-950/30 py-16">
       <div ref={containerRef} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
