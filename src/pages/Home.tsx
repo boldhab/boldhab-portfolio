@@ -26,17 +26,7 @@ const socialLinks: socialLinks[] = [
 ]
 
 export default function Home() {
-  // Function to handle CV download
-  const handleDownloadCV = () => {
-    // Replace with your actual CV URL or file path
-    const cvUrl = "/path/to/your/cv.pdf"
-    const link = document.createElement("a")
-    link.href = cvUrl
-    link.download = "Habtamu_Befekadu_CV.pdf"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
+  
 
   return (
     <div id="home" className="relative min-h-screen w-full overflow-hidden bg-background">
@@ -302,16 +292,24 @@ export default function Home() {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
               >
-                <Button
-                  onClick={handleDownloadCV}
-                  variant="ghost"
-                  className="w-full h-10 text-sm rounded-lg bg-secondary/50 border border-border text-foreground hover:bg-secondary hover:border-blue-500/30 transition-all duration-300 font-semibold"
+                <a
+                  href="https://drive.google.com/file/d/1E_E5Mx83RxUHrBl_ibZ6QfZMPIvuMpTk/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full"
                 >
-                  <Download className="mr-2 w-4 h-4" />
-                  My CV
-                </Button>
+                  <Button
+                    variant="ghost"
+                    className="w-full h-10 text-sm rounded-lg bg-secondary/50 border border-border text-foreground hover:bg-secondary hover:border-blue-500/30 transition-all duration-300 font-semibold"
+                  >
+                    <Download className="mr-2 w-4 h-4" />
+                    My CV
+                  </Button>
+                </a>
               </motion.div>
-            </motion.div>
+
+
+          </motion.div>
 
           </motion.div>
 
